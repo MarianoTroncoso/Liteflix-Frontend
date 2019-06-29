@@ -10,8 +10,8 @@ Se espera, de esta manera, que el Catálogo de Películas final, liste las pelí
 
 El prototipo de diseño se encuentra en Invision bajo los siguientes links:
 
-- [Desktop](https://invis.io/RTSR2LAJ35C)
-- [Mobile](https://invis.io/TXSR2KM4BRD)
+- [Desktop](https://invis.io/DBSR9A6XR9N)
+- [Mobile](https://invis.io/MFSR9A8Q4SJ)
 
 Desde el Invision se deberían poder descargar los assets. Para poder lograr esto, deberías aceptar el invite que te llegó por mail y entrar en Inspect Mode.
 De todas formas, adjuntamos el file [Sketch](https://drive.google.com/file/d/15fvlZr5TYtLcBA8xnhZLoF8MOjSEOCne/view?usp=sharing) con los archivos editables.
