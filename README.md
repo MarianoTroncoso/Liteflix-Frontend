@@ -8,12 +8,8 @@ Se espera, de esta manera, que el Catálogo de Películas final, liste las pelí
 
 # Diseño
 
-El prototipo de diseño se encuentra en Invision bajo los siguientes links:
-
-- [Desktop](https://invis.io/DBSR9A6XR9N)
-- [Mobile](https://invis.io/MFSR9A8Q4SJ)
-
-Desde el Invision se deberían poder descargar los assets. Para poder lograr esto, deberías aceptar el invite que te llegó por mail y entrar en Inspect Mode.
+El prototipo de diseño se encuentra disponible en [Zeplin](https://zpl.io/VQRNKx4)
+Desde Zeplin se deberían poder descargar los assets. 
 De todas formas, adjuntamos el file [Sketch](https://drive.google.com/file/d/15fvlZr5TYtLcBA8xnhZLoF8MOjSEOCne/view?usp=sharing) con los archivos editables.
 
 El diseño a lograr contiene links con distintos estados (hovers), sin embargo las animaciones o transiciones que se ejecuten, dependen 100% de vos. Definitivamente son un bonus!
