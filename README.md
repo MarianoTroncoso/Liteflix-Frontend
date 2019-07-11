@@ -68,4 +68,3 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 - Información acerca del uso de imágenes:
 https://developers.themoviedb.org/3/getting-started/images
-- Información extra
