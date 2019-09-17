@@ -23,7 +23,7 @@ El único link que debería ejecutar una acción es el de Agregar Películas, el
 
 # Desarrollo
 
-Una vez finalizado el ejercicio, deberás compartir un repositorio en Git para poder evaluarlo.
+Una vez finalizado el ejercicio, deberás compartir un repositorio en Git para poder evaluarlo. (Suma un montón si podés deployarlo en zeit / heroku o similares)
 
 Como te mencionamos en la reunión, la estructura del proyecto es sólo sugerida. Si te sentís cómodo con otro stack, podés cambiarlo sin problema.
 
