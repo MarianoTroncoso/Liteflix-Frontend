@@ -4,9 +4,9 @@
 
 El proyecto consiste en un Catálogo de Películas dinámico. Las películas se encuentran categorizadas y provienen de una API pública.
 
-Sin embargo, el catálogo debería poder ser actualizado, pudiendo agregar nuevas películas. No se dispone de un endpoint para agregar nuevas películas, sino que deberían guardarse en localStorage (Las mismas deben listarse en una nueva categoria "Mis Peliculas" y deberá tener el mismo diseño que las de la sección "Proximamente").
+Sin embargo, el catálogo debería poder ser actualizado, pudiendo agregar nuevas películas. No se dispone de un endpoint para agregar nuevas películas, sino que debería crearse una API para guardar las mismas y poder listarlas.
 
-Se espera, de esta manera, que el Catálogo de Películas final, liste las películas que provienen de la API pública + del local storage y las categorice 
+Se espera, de esta manera, que el Catálogo de Películas final, liste las películas que provienen de la API pública + la nueva API que creemos.
 
 # Diseño
 
@@ -23,7 +23,7 @@ El único link que debería ejecutar una acción es el de Agregar Películas, el
 
 # Desarrollo
 
-Una vez finalizado el ejercicio, deberás compartir un repositorio en Git para poder evaluarlo. (Suma un montón si podés deployarlo en zeit / heroku o similares)
+Una vez finalizado el ejercicio, deberás compartir los repositorios (Del front y la API) para poder evaluarlo. (Suma un montón si podés deployarlo en zeit / heroku o similares)
 
 Como te mencionamos en la reunión, la estructura del proyecto es sólo sugerida. Si te sentís cómodo con otro stack, podés cambiarlo sin problema.
 
