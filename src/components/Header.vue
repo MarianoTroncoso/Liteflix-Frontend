@@ -23,7 +23,7 @@
           </li>
           <li class="nav-item item-circle">
             <button type="button" class="bg-danger btn-circle text-white">
-              <img class="plus" src="../../static/plus-icon.svg" alt="" />
+              <img class="plus" src="../../static/plus.svg" alt="" />
             </button>
           </li>
         </ul>
@@ -64,6 +64,10 @@ export default {
 <style lang="scss" scoped>
 #navbarSupportedContent {
   padding-top: 12px;
+}
+
+.container-fluid {
+  padding: 0 165px 0 0;
 }
 
 .plus {
