@@ -29,7 +29,9 @@ export default {
 
 <style lang="scss" scoped>
 .homepage-container {
-  background-image: url("https://image.tmdb.org/t/p/w1280/6ELCZlTA5lGUops70hKdB83WJxH.jpg");
+  background-image: url("https://image.tmdb.org/t/p/w1280/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
   padding-left: 165px;
 }
 </style>
