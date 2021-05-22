@@ -8,7 +8,7 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Landing',
+      name: 'Liteflix',
       component: () => import('@/pages/Landing')
     }
   ]
