@@ -6,7 +6,7 @@
       <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
       <DestacadaButton text="Mi lista" icon="../../static/plus.svg" />
     </div>
-    <div class="desc bg-primary">
+    <div class="desc">
       <b>Ver temporada 1</b>
       <!-- TODO: fetch de la descripcion -->
       <p>
