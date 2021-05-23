@@ -35,7 +35,7 @@ export default {
       no-repeat,
     #000000 no-repeat;
   // background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 100% 760px;
   padding-left: 165px;
 }
 </style>

@@ -35,17 +35,19 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <img class="bell" src="../../static/bell-icon.svg" alt="" />
+                <div class="btn position-relative bell">
+                  <span class="rounded-circle bg-danger"></span>
+                </div>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <img src="../../static/user-01-icon.svg" alt="" />
+                <img src="../../static/user-01.svg" alt="" />
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <img src="../../static/arrow-icon.svg" alt="" />
+                <img src="../../static/arrow.svg" alt="" />
               </a>
             </li>
           </ul>
@@ -65,26 +67,32 @@ export default {
 #navbarSupportedContent {
   padding-top: 12px;
 }
-
 .container-fluid {
   padding: 0 165px 0 0;
 }
-
 .plus {
   width: 15.9px;
   height: 15px;
   margin-bottom: 5px;
 }
-
 .bell {
-  width: 14px;
-  height: 16px;
+  background-image: url("../../static/bell.svg");
+  background-repeat: no-repeat;
+  padding-right: 0;
+}
+
+.bell span {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 2px;
+  bottom: 8px;
+  left: 8px;
 }
 
 .item-circle {
   margin-left: 10px;
 }
-
 .btn-circle {
   padding: 0px;
   border: 0px;
@@ -94,17 +102,32 @@ export default {
   padding: 0px;
 }
 
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn {
+}
+
 .active {
   font-weight: bold !important;
+}
+.navbar {
+  padding: 0;
 }
 .navbar-brands img {
   margin-right: 11px;
 }
-
 .navbar-light .navbar-nav .nav-link {
   color: white;
   font-size: 14px;
   padding: 12px 9px;
   font-family: "Montserrat";
+  // font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
 }
 </style>
