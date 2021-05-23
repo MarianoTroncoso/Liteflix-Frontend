@@ -1,6 +1,7 @@
 <template>
   <div class="homepage-container">
     <div class="pl-3">
+      <!-- <Header /> -->
       <Header />
       <Destacada />
       <Proximamente />
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+// import Header from "../components/Header";
 import Header from "../components/Header";
 import Destacada from "../components/Destacada";
 import Proximamente from "../components/Proximamente";
@@ -18,6 +20,7 @@ import Populares from "../components/Populares";
 export default {
   name: "Homepage",
   components: {
+    // Header,
     Header,
     Destacada,
     Proximamente,
@@ -36,6 +39,6 @@ export default {
     #000000 no-repeat;
   // background-repeat: no-repeat;
   background-size: 100% 760px;
-  padding-left: 165px;
+  // padding-left: 165px;
 }
 </style>

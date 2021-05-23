@@ -44,7 +44,7 @@ export default {
 
 .jumbotron h1 {
   font-size: 110px;
-  font-family: "RobotoSlab";
+  font-family: "Roboto Slab", serif;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
