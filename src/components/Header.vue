@@ -9,8 +9,9 @@
     <!-- sidebar -->
     <div id="mySidebar" class="sidebar">
       <div class="d-flex">
-        <a>
+        <a v-on:click="closeNav">
           <img src="../../static/burger.svg" alt="" />
+          <!-- <img src="../../static/burger.svg" alt="" /> -->
         </a>
         <a> <img src="../../static/liteflix.svg" alt="" /> </a>
       </div>
