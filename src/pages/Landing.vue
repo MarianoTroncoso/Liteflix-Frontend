@@ -38,8 +38,15 @@ export default {
   background: url("https://image.tmdb.org/t/p/w1280/13B6onhL6FzSN2KaNeQeMML05pS.jpg")
       no-repeat,
     #000000 no-repeat;
-  // background-repeat: no-repeat;
   background-size: 100% 760px;
-  // padding-left: 165px;
+}
+@media screen and (min-width: 760px) {
+  .homepage-container {
+    // backdrop
+    background: url("https://image.tmdb.org/t/p/w1280/nz8xWrTKZzA5A7FgxaM4kfAoO1W.jpg")
+        no-repeat,
+      #000000 no-repeat;
+    background-size: 100%;
+  }
 }
 </style>

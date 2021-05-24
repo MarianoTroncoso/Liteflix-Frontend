@@ -56,8 +56,8 @@ export default {
   grid-gap: 3px;
 }
 .populares-imagenes img {
-  width: 163px;
-  height: 328px;
+  width: 100%;
+  height: auto;
 }
 /*
 .populares {
