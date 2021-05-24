@@ -3,8 +3,11 @@
   <div class="destacada-wrapper-mobile">
     <h4>Original de <b>Liteflix</b></h4>
     <h1>Kids At School</h1>
-    <div class="botones">
+    <div class="buttons">
       <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
+      <a href="#" class="plus-circle"
+        ><img src="../../static/plus-circle.svg" alt=""
+      /></a>
     </div>
   </div>
   <!-- DESKTOP
@@ -62,11 +65,16 @@ export default {
   letter-spacing: normal;
   text-align: center;
 }
-.botones {
+.buttons {
   display: flex;
   justify-content: center;
+  position: relative;
 }
-
+.plus-circle {
+  position: absolute;
+  right: 0;
+  margin-right: 15px;
+}
 // DESKTOP
 /*
 .jumbotron {
