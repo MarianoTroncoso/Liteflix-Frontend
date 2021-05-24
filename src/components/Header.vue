@@ -14,12 +14,48 @@
         </a>
         <a> <img src="../../static/liteflix.svg" alt="" /> </a>
       </div>
-      <div class="user-sidebar">
-        <div class="circle"><img src="../../static/fill-1.svg" alt="" /></div>
-        <span>Ernesto Garmendia</span>
+      <!-- label -->
+      <div class="sidebar-user">
+        <!-- imagen -->
+        <div class="sidebar-user-image">
+          <img src="../../static/fill-1.svg" alt="" />
+        </div>
+        <!-- nombre -->
+        <div class="sidebar-user-name"><span>Ernesto Garmendia</span></div>
       </div>
-      <a href="#">About</a>
-      <a href="#">Services</a>
+      <!-- settings  -->
+      <div class="sidebar-settings">
+        <a href="#">Cambiar Usuario</a>
+        <div class="line"></div>
+        <a href="#">Configuración</a>
+        <div class="line"></div>
+        <a href="#">Ayuda</a>
+        <div class="line"></div>
+      </div>
+      <!-- settings  -->
+      <div class="sidebar-sections">
+        <div class="d-flex novedades">
+          <img src="../../static/bell.svg" alt="" />
+          <a href="#">Novedades</a>
+        </div>
+
+        <ul class="">
+          <li>Series</li>
+          <li>Peliculas</li>
+          <li>Mi lista</li>
+          <li>Niños</li>
+        </ul>
+      </div>
+      <!-- Agregar pelicula -->
+      <div class="button sidebar-add-button">
+        <a href="#">
+          <img src="../../static/plus.svg" alt="" />
+          <span>Agregar película</span></a
+        >
+      </div>
+
+      <!-- Logout -->
+      <div class="sidebar-logout"><a href="#">Log out</a></div>
     </div>
   </div>
 </template>
@@ -57,7 +93,6 @@ export default {
 #brand-logo {
   margin: 0.76rem;
 }
-
 // collapse sidebar
 .sidebar {
   height: 100%;
@@ -74,9 +109,9 @@ export default {
 .sidebar a {
   padding: 0.5rem 0px 0px 0.65rem;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
+  // font-size: 25px;
+  color: white;
+  // display: block;
   transition: 0.3s;
 }
 .sidebar a:hover {
@@ -89,7 +124,6 @@ export default {
   font-size: 36px;
   margin-left: 50px;
 }
-
 .openbtn {
   font-size: 20px;
   cursor: pointer;
@@ -98,27 +132,131 @@ export default {
   padding: 10px 15px;
   border: none;
 }
-.user-sidebar {
-  background: #222222;
-  color: white;
-  width: 12.06rem;
-  height: 2.31rem;
-  border-radius: 1.15rem;
-  font-size: 12px;
-  font-family: "Montserrat";
+.sidebar-user {
+  width: 193px;
+  height: 37px;
+  padding: 6px 0px 6px 7px; // centrar el circulo
+  border-radius: 18.5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #222222;
   display: flex;
-  // justify-content: center;
-  align-items: center;
+  // margin
+  margin: 22px 20px 0 15px;
 }
-.circle {
-  width: 1.56rem;
-  height: 1.56rem;
-  background: #ce00ff;
-  border-radius: 0.93rem;
+.sidebar-user-image {
+  width: 25px;
+  height: 25px;
+  background: #ce00ff; // separacion nombre
+  margin: 0 8px 0 0;
+  padding: 5px 5.7px 5px 6px; // centrar la imagen
+  border-radius: 15px;
+  // centrar
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
-.circle img {
-  width: 0.83rem;
-  height: 0.93rem;
+.sidebar-user-name {
+  // width: 115px;
+  // height: 15px;
+  margin: 5px 0 5px 8px;
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: white;
+}
+.sidebar-settings {
+  margin: 20px 20px 0 15px;
+}
+.sidebar-settings a {
+  // width: 99px;
+  // height: 15px;
+  margin: 0 94px 7px 0;
+  padding: 0;
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: white;
+}
+.line {
+  width: 193px;
+  height: 2px;
+  margin: 7px 0 6px;
+  border: solid 1px #222222;
+}
+.sidebar-sections {
+  padding: 25px 0 0 0;
+}
+.novedades {
+  color: white;
+  margin: 0 116px 12px 15px;
+}
+.novedades a {
+  padding: 0;
+  margin-left: 5px;
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: white;
+}
+.novedades button {
+  border: 0;
+  padding: 0;
+  background-image: url("../../static/bell.svg");
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+ul li {
+  color: white;
+  font-size: 14px;
+  font-family: "Montserrat";
+  margin-top: 12px;
+}
+.sidebar-sections ul {
+  margin: 0 0 0 14px;
+}
+
+.sidebar-add-button {
+  background-color: red;
+  width: 193px;
+  height: 40px;
+  margin: 22px 0 0 14px;
+  padding: 10px 42px 12px 11px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: white;
+}
+.sidebar-add-button a {
+  padding: 0;
+  display: flex;
+}
+.sidebar-add-button span {
+  margin-left: 8px;
+}
+.sidebar-logout {
+  padding: 27px 0 0 15px;
+}
+.sidebar-logout a {
+  padding: 0;
+  font-size: 12px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
 }
 
 @media screen and (min-width: 769px) {
