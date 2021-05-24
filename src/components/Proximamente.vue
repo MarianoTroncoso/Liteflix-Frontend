@@ -1,5 +1,5 @@
 <template>
-  <div class="proximamente">
+  <!-- <div class="proximamente">
     <p>Próximamente</p>
     <img
       class="col-3"
@@ -8,6 +8,12 @@
       :src="image"
       alt=""
     />
+  </div> -->
+  <div class="proximamente-wrapper-mobile">
+    <h1>Proxímamente</h1>
+    <div class="proximamente-imagenes">
+      <img v-for="(image, index) in images" :key="index" :src="image" alt="" />
+    </div>
   </div>
 </template>
 
@@ -28,6 +34,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.proximamente-wrapper-mobile {
+  // background-color: gray;
+  padding: 40px 0 0 14px;
+}
+.proximamente-wrapper-mobile h1 {
+  font-family: "Raleway";
+  font-size: 20px;
+  font-weight: 800;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: white;
+  // margin-left: 14px;
+}
+.proximamente-imagenes {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 0 15.3px 10px 0;
+}
+.proximamente-imagenes img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+/*
 img {
   width: 255px;
   height: 155px;
@@ -53,4 +85,5 @@ p {
   color: white;
   margin-bottom: 0;
 }
+*/
 </style>
