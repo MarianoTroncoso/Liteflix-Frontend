@@ -1,5 +1,14 @@
 <template >
-  <div class="jumbotron">
+  <!--MOBILE-->
+  <div class="destacada-wrapper-mobile">
+    <h4>Original de <b>Liteflix</b></h4>
+    <h1>Kids At School</h1>
+    <div class="botones">
+      <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
+    </div>
+  </div>
+  <!-- DESKTOP
+    <div class="jumbotron">
     <h4 class="text-uppercase">Original de <b>liteflix</b></h4>
     <h1>Kids at school</h1>
     <div>
@@ -8,7 +17,6 @@
     </div>
     <div class="desc">
       <b>Ver temporada 1</b>
-      <!-- TODO: fetch de la descripcion -->
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. At quo
         recusandae repellendus nisi eaque repellat est consequuntur non nesciunt
@@ -16,7 +24,8 @@
         natus?
       </p>
     </div>
-  </div>
+  </div> 
+  -->
 </template>
 
 <script>
@@ -31,6 +40,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// MOBILE
+.destacada-wrapper-mobile {
+  // background-color: gray;
+  text-align: center;
+  color: white;
+  padding: 178.5px 0 0 0;
+}
+.destacada-wrapper-mobile h4 {
+  text-transform: uppercase;
+  font-family: "Montserrat";
+  font-size: 18px;
+}
+.destacada-wrapper-mobile h1 {
+  font-size: 72px;
+  font-family: "Roboto Slab", serif;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
+}
+.botones {
+  display: flex;
+  justify-content: center;
+}
+
+// DESKTOP
+/*
 .jumbotron {
   color: white;
   font-family: "Montserrat";
@@ -65,4 +103,5 @@ export default {
   margin: 25px 0 0 0; //!cuidado, mr es 574
   height: 168px;
 }
+*/
 </style>

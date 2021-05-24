@@ -1,5 +1,6 @@
 <template>
-  <div class="header-wrapper">
+  <!-- MOBILE -->
+  <div class="header-wrapper-mobile">
     <a id="burger" class="openbtn" v-on:click="openNav">
       <img src="../../static/burger.svg" alt="" />
     </a>
@@ -62,6 +63,7 @@
       <!-- Logout -->
       <div class="sidebar-logout"><a href="#">Log out</a></div>
     </div>
+    <!-- desktop navbar -->
   </div>
 </template>
 
@@ -84,7 +86,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header-wrapper {
+.header-wrapper-mobile {
   display: flex;
   justify-content: center;
   transition: margin-left 0.5s;
@@ -93,7 +95,7 @@ export default {
 #burger {
   position: absolute;
   left: 0;
-  margin: 0.62rem 6.0625rem 0.56rem 15px;
+  // margin: 0.62rem 6.0625rem 0.56rem 15px;
 }
 #brand-logo {
   margin: 0.76rem;

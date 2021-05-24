@@ -34,7 +34,8 @@ export default {
 
 <style lang="scss" scoped>
 .homepage-container {
-  background: url("https://image.tmdb.org/t/p/w1280/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg")
+  // poster
+  background: url("https://image.tmdb.org/t/p/w1280/13B6onhL6FzSN2KaNeQeMML05pS.jpg")
       no-repeat,
     #000000 no-repeat;
   // background-repeat: no-repeat;
