@@ -35,11 +35,15 @@
       <!-- settings  -->
       <div class="sidebar-sections">
         <div class="d-flex novedades">
-          <img src="../../static/bell.svg" alt="" />
+          <!-- <img src="../../static/bell.svg" alt="" /> -->
+          <div class="btn position-relative bell">
+            <span class="rounded-circle bg-danger"></span>
+          </div>
+
           <a href="#">Novedades</a>
         </div>
 
-        <ul class="">
+        <ul>
           <li>Series</li>
           <li>Peliculas</li>
           <li>Mi lista</li>
@@ -103,15 +107,12 @@ export default {
   left: 0;
   background-color: #000000;
   overflow-x: hidden;
-  transition: 0.5s;
-  // padding-top: 60px;
+  transition: 0.7s;
 }
 .sidebar a {
   padding: 0.5rem 0px 0px 0.65rem;
   text-decoration: none;
-  // font-size: 25px;
   color: white;
-  // display: block;
   transition: 0.3s;
 }
 .sidebar a:hover {
@@ -120,7 +121,7 @@ export default {
 .sidebar .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
+  right: 1.56rem;
   font-size: 36px;
   margin-left: 50px;
 }
@@ -148,8 +149,8 @@ export default {
   height: 25px;
   background: #ce00ff; // separacion nombre
   margin: 0 8px 0 0;
-  padding: 5px 5.7px 5px 6px; // centrar la imagen
-  border-radius: 15px;
+  padding: 0.3125rem 0.3563rem 0.3125rem 0.375rem; // centrar la imagen
+  border-radius: 0.9375rem;
   // centrar
   display: flex;
   justify-content: center;
@@ -200,7 +201,7 @@ export default {
 }
 .novedades a {
   padding: 0;
-  margin-left: 5px;
+  margin: 1px 0 0 5px;
   font-family: "Montserrat";
   font-size: 14px;
   font-weight: normal;
@@ -257,6 +258,20 @@ ul li {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
+}
+.bell {
+  background-image: url("../../static/bell.svg");
+  background-repeat: no-repeat;
+  padding-right: 0;
+}
+
+.bell span {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 2px;
+  bottom: 8px;
+  left: 8px;
 }
 
 @media screen and (min-width: 769px) {
