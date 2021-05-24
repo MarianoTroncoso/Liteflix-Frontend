@@ -1,5 +1,5 @@
 <template>
-  <div class="populares">
+  <!-- <div class="populares">
     <p class="text-uppercase">Populares de Liteflix</p>
     <div>
       <img
@@ -9,6 +9,12 @@
         :src="image"
         alt=""
       />
+    </div>
+  </div> -->
+  <div class="populares-wrapper-mobile">
+    <h1>Populares de Liteflix</h1>
+    <div class="populares-imagenes">
+      <img v-for="(image, index) in images" :key="index" :src="image" alt="" />
     </div>
   </div>
 </template>
@@ -30,14 +36,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.populares-wrapper-mobile {
+  padding: 0 0 0 15px;
+}
+.populares-wrapper-mobile h1 {
+  font-family: "Raleway";
+  font-size: 20px;
+  font-weight: 800;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: white;
+  text-transform: uppercase;
+}
+.populares-imagenes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3px;
+}
+.populares-imagenes img {
+  width: 163px;
+  height: 328px;
+}
+/*
 .populares {
   margin-top: 40.7px;
 }
-
 img {
   width: 253px;
   height: 507px;
-  // margin: 9.3px 31.4px 3px 0.9px;
   margin: 9.3px 31.4px 0 0;
   object-fit: contain;
   background-color: #000000;
@@ -53,4 +81,5 @@ p {
   letter-spacing: normal;
   color: white;
 }
+*/
 </style>
