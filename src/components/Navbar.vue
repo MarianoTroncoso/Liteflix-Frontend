@@ -41,6 +41,7 @@ export default {
 .navbar-wrapper {
   padding: 20px 165px 0 165px;
   display: flex;
+  // align-items: baseline;
 }
 #logo-brand {
   margin-right: 20px;

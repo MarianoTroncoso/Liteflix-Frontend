@@ -1,15 +1,36 @@
 <template >
   <!--MOBILE-->
-  <div class="destacada-wrapper-mobile">
-    <h4>Original de <b>Liteflix</b></h4>
-    <h1>Kids At School</h1>
-    <div class="buttons">
-      <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
-      <a href="#" class="plus-circle"
-        ><img src="../../static/plus-circle.svg" alt=""
-      /></a>
+  <div class="destacada-wrapper">
+    <div class="destacada-wrapper-mobile">
+      <h4>Original de <b>Liteflix</b></h4>
+      <h1>Kids At School</h1>
+      <div class="buttons-mobile">
+        <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
+        <a href="#" class="plus-circle"
+          ><img src="../../static/plus-circle.svg" alt=""
+        /></a>
+      </div>
+    </div>
+    <div class="destacada-wrapper-desktop">
+      <!--  bg-secondary -->
+      <h4>Original de <b>Liteflix</b></h4>
+      <h1>Kids at School</h1>
+      <div class="buttons-desktop">
+        <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
+        <DestacadaButton text="Mi lista" icon="../../static/plus.svg" />
+      </div>
+      <div class="descripcion">
+        <p><b>Ver temporada 1</b></p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+          illo quam dolorem debitis eligendi quisquam nihil laboriosam quis
+          sunt, voluptates cum. Doloribus qui atque magni enim vero delectus
+          eaque eligendi!
+        </p>
+      </div>
     </div>
   </div>
+
   <!-- DESKTOP
     <div class="jumbotron">
     <h4 class="text-uppercase">Original de <b>liteflix</b></h4>
@@ -65,7 +86,28 @@ export default {
   letter-spacing: normal;
   text-align: center;
 }
-.buttons {
+.destacada-wrapper-desktop {
+  display: none;
+  width: 33.5625rem;
+  color: white;
+  padding: 82px 0 0 164px;
+}
+.destacada-wrapper-desktop h4 {
+  font-family: "Montserrat";
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.destacada-wrapper-desktop h1 {
+  font-size: 110px;
+  font-family: "Roboto Slab", serif;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.82;
+  letter-spacing: normal;
+  margin-top: 18px;
+}
+.buttons-mobile {
   display: flex;
   justify-content: center;
   position: relative;
@@ -74,6 +116,28 @@ export default {
   position: absolute;
   right: 0;
   margin-right: 15px;
+}
+.buttons-desktop {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 19px;
+}
+.descripcion {
+  padding-top: 25px;
+}
+.descripcion p {
+  margin-bottom: 0;
+  font-family: "Montserrat";
+  font-size: 18px;
+}
+@media screen and (min-width: 760px) {
+  .destacada-wrapper-desktop {
+    display: block;
+  }
+  .destacada-wrapper-mobile {
+    display: none;
+  }
 }
 // DESKTOP
 /*
