@@ -30,7 +30,7 @@ export default {
   display: none;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1201px) {
   .header-wrapper-desktop {
     display: block;
   }
