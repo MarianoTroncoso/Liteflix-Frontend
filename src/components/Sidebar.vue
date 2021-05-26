@@ -190,7 +190,6 @@ export default {
 .novedades button {
   border: 0;
   padding: 0;
-  background-image: url("../../static/bell.svg");
 }
 ul {
   list-style-type: none;

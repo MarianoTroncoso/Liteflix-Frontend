@@ -7,17 +7,19 @@
     </div>
     <div class="header-wrapper-desktop">
       <!-- navbar -->
-      <h1>hola</h1>
+      <Navbar />
     </div>
   </div>
 </template>
 
 <script>
+import Navbar from "./Navbar";
 import SideBar from "./Sidebar";
 export default {
   name: "Header",
   components: {
     SideBar,
+    Navbar,
   },
 };
 </script>
