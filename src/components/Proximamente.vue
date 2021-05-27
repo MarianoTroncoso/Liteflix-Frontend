@@ -35,9 +35,7 @@
             :class="'img-' + index"
           />
           <a class="switchLeft sliderButton">&lt;</a>
-          <!-- :onClick="sliderScrollLeft()" -->
           <a class="switchRight sliderButton">></a>
-          <!-- :onClick="sliderScrollRight()" -->
         </div>
       </div>
     </div>
@@ -47,6 +45,7 @@
 <script>
 export default {
   name: "Proximamente",
+
   data() {
     return {
       images: [
