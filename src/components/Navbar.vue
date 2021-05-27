@@ -10,7 +10,11 @@
       <li><a href="#">Agregados recientemente</a></li>
       <li><a href="#">Mi lista</a></li>
     </ul>
-    <button type="button" class="circle-button"></button>
+
+    <button class="add-movie-button">
+      <img src="../../static/plus.svg" alt="" />
+      <span>Agregar película</span>
+    </button>
     <div class="right-items">
       <ul>
         <li><a href="#">Niños</a></li>
@@ -41,7 +45,6 @@ export default {
 .navbar-wrapper {
   padding: 20px 165px 0 165px;
   display: flex;
-  // align-items: baseline;
 }
 #logo-brand {
   margin-right: 20px;
@@ -58,26 +61,81 @@ a {
   color: white;
   font-family: "Montserrat";
   font-size: 14px;
-  // font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
 }
-.circle-button {
+/* .circle-button {
   display: block;
   width: 40px;
   height: 40px;
   background: red;
   border-radius: 20px;
   border: 0;
-  // moz-border-radius: 20px;
-  // -webkit-border-radius: 20px;
   background-image: url("../../static/plus.svg");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   cursor: pointer;
+} */
+
+/*
+.add-movie-button {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: red;
+  border: 0;
+  border-radius: 20px;
 }
+.add-movie-button span {
+  display: none;
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: white;
+  margin-left: 8px;
+}
+.add-movie-button img {
+  margin: 0 6px 0 6px;
+}
+.add-movie-button:hover {
+  padding-right: 17px;
+}
+.add-movie-button:hover span {
+  display: block;
+}
+*/
+// ----------------
+.add-movie-button span {
+  max-width: 0;
+  -webkit-transition: max-width 1s;
+  transition: max-width 1s;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: white;
+}
+.add-movie-button:hover span {
+  max-width: 7rem;
+  margin: 0 17px 0 0;
+}
+.add-movie-button {
+  background-color: red;
+  border: 0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  height: 40px;
+}
+.add-movie-button img {
+  margin: 0 12px 0 12px;
+}
+
 .right-items {
   margin-left: auto;
 }
