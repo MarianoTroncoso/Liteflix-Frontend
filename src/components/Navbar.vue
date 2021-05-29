@@ -26,7 +26,7 @@
         </li>
         <li>
           <div class="action">
-            <div class="profile" @mouseover="menuShow">
+            <div class="profile">
               <img src="../../static/user-01.svg" alt="" />
             </div>
             <div class="menu" ref="menu">

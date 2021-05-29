@@ -11,10 +11,6 @@
             alt=""
             :class="'img-' + index"
           />
-          <a class="switchLeft sliderButton">&lt;</a>
-          <!-- :onClick="sliderScrollLeft()" -->
-          <a class="switchRight sliderButton">></a>
-          <!-- :onClick="sliderScrollRight()" -->
         </div>
       </div>
     </div>
@@ -54,10 +50,6 @@ export default {
         "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/19511682-3234-4CDF-AB50-9B8331D8314E.png",
         "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/BA2C81CF-CC66-4797-9A32-858676807134.png",
         "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/3616C539-3984-499F-A5E7-9E517C58F465.png",
-        "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/1940B1C9-498A-499B-B30C-D77251124177.png",
-        "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/19511682-3234-4CDF-AB50-9B8331D8314E.png",
-        "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/BA2C81CF-CC66-4797-9A32-858676807134.png",
-        "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/3616C539-3984-499F-A5E7-9E517C58F465.png",
       ],
     };
   },
@@ -92,8 +84,7 @@ export default {
 }
 .populares-wrapper-desktop {
   display: none;
-
-  padding: 40.7px 224px 0 165px; // 40.7px 164.8px 0 165px
+  padding: 40.7px 0 0 165px;
 }
 .populares-wrapper-desktop h4 {
   font-family: "Montserrat";
@@ -101,6 +92,11 @@ export default {
   font-weight: bold;
   text-transform: uppercase;
   margin: 0;
+}
+.populares-wrapper-desktop img {
+  width: 253px;
+  height: 507px;
+  margin-right: 31.4px;
 }
 
 /*

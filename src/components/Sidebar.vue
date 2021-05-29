@@ -213,6 +213,7 @@ ul li {
   border-radius: 20px;
   font-size: 14px;
   color: white;
+  // font-family: "Montserrat";
 }
 .sidebar-add-button a {
   padding: 0;

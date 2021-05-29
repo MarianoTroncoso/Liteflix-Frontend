@@ -13,9 +13,21 @@
     </div>
 
     <div class="proximamente-wrapper-desktop">
-      <!-- <h4>Próximamente</h4>
-      <div class="carousel">
-        <div class="carouselbox">
+      <h4>Próximamente</h4>
+      <div class="proximamente-imagenes-desktop">
+        <!-- <img
+          v-for="(image, index) in images"
+          :key="index"
+          :src="image"
+          alt=""
+        /> -->
+        <ImagenProximamente />
+        <ImagenProximamente />
+        <ImagenProximamente />
+        <ImagenProximamente />
+      </div>
+      <!-- <div class="carousel">
+        <div class="carouselbox" ref="carouselbox">
           <img
             v-for="(image, index) in images"
             :key="index"
@@ -23,32 +35,58 @@
             alt=""
             :class="'img-' + index"
           />
-          
         </div>
+        <a class="switchLeft sliderButton" @click="sliderScrollLeft">&lt;</a>
+        <a class="switchRight sliderButton" @click="sliderScrollRight">></a>
       </div> -->
-      <div class="carousel">
-        <h1>Hola</h1>
-        <div class="carouselbox">
-          <!-- imagenes -->
-        </div>
-        <a class="switchLeft sliderButton">&lt;</a>
-        <a class="switchRight sliderButton">></a>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
+import ImagenProximamente from "./ImagenProximamente";
+/*
+var scrollPerClick = 270;
+var scrollAmount = 0;
+*/
+
 export default {
   name: "Proximamente",
+  /*
+  methods: {
+    sliderScrollLeft() {
+      const sliders = this.$refs.carouselbox;
+      sliders.scrollTo({
+        top: 0,
+        left: (scrollAmount -= scrollPerClick),
+        behavior: "smooth",
+      });
 
+      if (scrollAmount < 0) {
+        scrollAmount = 0;
+      }
+
+      console.log("Scroll Amount: ", scrollAmount);
+    },
+    sliderScrollRight() {
+      const sliders = this.$refs.carouselbox;
+      if (scrollAmount <= sliders.scrollWidth - sliders.clientWidth) {
+        sliders.scrollTo({
+          top: 0,
+          left: (scrollAmount += scrollPerClick),
+          behavior: "smooth",
+        });
+      }
+      console.log("Scroll Amount: ", scrollAmount);
+    },
+  },
+  */
+  components: {
+    ImagenProximamente,
+  },
   data() {
     return {
       images: [
-        "https://image.tmdb.org/t/p/w1280/6ELCZlTA5lGUops70hKdB83WJxH.jpg",
-        "https://image.tmdb.org/t/p/w1280/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg",
-        "https://image.tmdb.org/t/p/w1280/ouOojiypBE6CD1aqcHPVq7cJf2R.jpg",
-        "https://image.tmdb.org/t/p/w1280/lkInRiMtLgl9u9xE0By5hqf66K8.jpg",
         "https://image.tmdb.org/t/p/w1280/6ELCZlTA5lGUops70hKdB83WJxH.jpg",
         "https://image.tmdb.org/t/p/w1280/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg",
         "https://image.tmdb.org/t/p/w1280/ouOojiypBE6CD1aqcHPVq7cJf2R.jpg",
@@ -86,9 +124,11 @@ export default {
   height: auto;
   margin-bottom: 10px;
 }
+// ----------------- desktop -----------------
 .proximamente-wrapper-desktop {
   display: none;
-  padding: 80px 224px 0 164px; // 80px 155px 0 164px
+  // background-color: red;
+  padding: 17px 0 0px 164px;
 }
 .proximamente-wrapper-desktop h4 {
   font-family: "Montserrat";
@@ -96,17 +136,74 @@ export default {
   font-weight: bold;
   margin: 0;
 }
+.proximamente-imagenes-desktop {
+  display: inline-flex;
+  overflow: hidden;
 
-/* video */
+  padding: 23.3px 0px 0px 0px;
+}
+.proximamente-imagenes-desktop img {
+  width: 255px;
+  height: 155px;
+  // margin-right: 31px;
+}
+
+/*
 .carousel {
   margin: 0;
-  padding: 0;
-  background-color: #262626;
+  padding: 20.3px 0 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
+.carouselbox {
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.carouselbox img {
+  width: 250px;
+  height: 155px;
+  background-size: cover;
+  margin: 0 31px 0 0;
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 2;
+}
+.carousel .switchLeft,
+.carousel .switchRight {
+  color: white;
+  font-weight: bold;
+  height: 100%;
+  width: 45px;
+  font-size: 25px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  z-index: 3;
+}
+.carousel .switchLeft {
+  position: absolute;
+  left: -25px;
+  text-decoration: none;
+}
+.carousel .switchRight {
+  position: absolute;
+  right: -50px;
+  text-decoration: none;
+}
+
+.carousel img:hover {
+  // transform: scale(1.4);
+  // z-index: 5;
+}
+*/
 @media screen and (min-width: 760px) {
   .proximamente-wrapper-desktop {
     display: block;

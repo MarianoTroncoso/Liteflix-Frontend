@@ -131,6 +131,9 @@ export default {
   font-family: "Montserrat";
   font-size: 18px;
 }
+.descripcion p:nth-child(2) {
+  height: 168px;
+}
 @media screen and (min-width: 760px) {
   .destacada-wrapper-desktop {
     display: block;
