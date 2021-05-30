@@ -1,0 +1,272 @@
+<template>
+  <div>
+    <div class="close-container">
+      <span class="close" @click="closeModal">&times;</span>
+    </div>
+    <div
+      class="add-file"
+      ref="addFile"
+      @dragover="onDragOver"
+      @dragleave="onDragLeave"
+      @drop="onDrop"
+      v-show="!showProgressBar"
+    >
+      <img src="../../static/clip.png" alt="" />
+      <input type="file" id="add-file-input" hidden />
+      <label for="add-file-input"
+        ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
+      >
+    </div>
+
+    <div
+      class="add-file progress-bar-container"
+      ref="addFile"
+      v-show="showProgressBar"
+    >
+      <span>Cargando {{ parseInt(progresBarWidth) }} %</span>
+      <div class="progress-bar" ref="progressBar" style="--width: 10"></div>
+      <div class="cancel-button">
+        <!-- <button @click="closeModal">Cancelar</button> -->
+        <button>Cancelar</button>
+      </div>
+    </div>
+    <div class="film-name-category">
+      <div class="film-name">
+        <span>Nombre de la Pelicula</span>
+        <input type="text" />
+      </div>
+      <div class="film-category">
+        <span>Categoría</span>
+        <select name="" id="">
+          <option selected disabled>Seleccionar una categoría</option>
+          <option v-for="index in 50" :key="index" :value="index">
+            Opcion X
+          </option>
+        </select>
+      </div>
+    </div>
+    <button class="upload-film">Subir Película</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Modal",
+  data() {
+    return {
+      showProgressBar: false,
+      progresBarWidth: 0,
+    };
+  },
+  methods: {
+    onDragOver(e) {
+      e.preventDefault();
+      this.$refs.addFile.classList.add("add-file-active");
+    },
+    onDragLeave() {
+      this.$refs.addFile.classList.remove("add-file-active");
+    },
+    onDrop(e) {
+      e.preventDefault();
+
+      // si sube varios, me quedo con el primero
+      const file = e.dataTransfer.files[0];
+
+      const fileType = file.type;
+
+      let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+
+      if (validExtensions.includes(fileType)) {
+        // console.log("formato valido");
+
+        let fileReader = new FileReader();
+
+        fileReader.onload = () => {
+          this.showProgressBar = true;
+          this.activateProgressBar();
+        };
+
+        fileReader.readAsDataURL(file);
+      } else {
+        //! NO VALIDO
+        console.log("formato no valido");
+        this.$refs.addFile.classList.remove("add-file-active");
+      }
+    },
+    activateProgressBar() {
+      const progresBar = this.$refs.progressBar;
+
+      let interval = setInterval(() => {
+        if (this.progresBarWidth == 100) {
+          clearInterval(interval);
+        } else {
+          const computedStyle = getComputedStyle(progresBar);
+          this.progresBarWidth =
+            parseFloat(computedStyle.getPropertyValue("--width")) || 0;
+
+          progresBar.style.setProperty("--width", this.progresBarWidth + 0.1);
+        }
+      }, 5);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.close-container {
+  // border: 2px solid green;
+  height: auto;
+  padding: 10px 14px 0 0;
+}
+.close {
+  // border: 2px solid blue;
+  // color: #aaaaaa;
+  float: right;
+  font-size: 17px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.add-file {
+  width: 660px;
+  height: 100px;
+  margin: 0 35px 0 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #9b9b9b;
+  border-radius: 10px;
+}
+.add-file label {
+  font-size: 16px;
+  font-family: "Montserrat";
+}
+.add-file label span {
+  color: #0076ff;
+  font-weight: bold;
+}
+.add-file img {
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+}
+.add-file-active {
+  // background: red;
+  border: 2px solid #0076ff;
+}
+.add-file .progress-bar {
+  // display: none;
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #f3f3f3;
+  // border-radius: 10px;
+  // color: green;
+  // padding: 0 0 0 12px;
+  // border: 2px solid blue;
+}
+.add-file .progress-bar::before {
+  content: attr(data-label);
+  position: absolute;
+  // left: 0.5em;
+  // top: 0.5em;
+  // bottom: 0.5em;
+  width: calc(var(--width, 0) * 1%);
+  min-width: 2rem;
+  max-width: calc(100% - 1em);
+  background-color: #7ed321;
+  border-radius: 10px;
+  padding: 10px;
+  // border: 2px solid red;
+}
+
+.progress-bar-container {
+  background-color: #f3f3f3;
+  border: 2px solid green;
+  display: block;
+  padding: 0 31px 15px 29px;
+
+  span {
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  button {
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-weight: bold;
+    border: 0;
+    background-color: #f3f3f3;
+  }
+  .cancel-button {
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.film-name-category {
+  // border: 2px solid red;
+  display: grid;
+  grid-template-columns: 345px 345px;
+  padding: 30px 35px 44px 35px;
+}
+.film-name,
+.film-category {
+  // border: 2px solid blue;
+  display: grid;
+  grid-template-rows: auto auto;
+  padding-right: 30px;
+}
+.film-name span,
+.film-category span {
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 5px;
+  color: #9b9b9b;
+  text-transform: uppercase;
+}
+
+.film-name input,
+.film-category select {
+  border: 0;
+  border-bottom: 2px solid #0076ff;
+  font-family: "Montserrat";
+  font-size: 16px;
+  margin-top: 12px;
+  color: #000000;
+  font-weight: 550;
+}
+.film-category select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+*:focus {
+  outline: none;
+}
+.upload-film {
+  // border: 2px solid green;
+  border-radius: 35px;
+  border: 0;
+  width: 350px;
+  height: 70px;
+  margin: 0 auto 27px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: white;
+  background-color: #dedede;
+}
+</style>

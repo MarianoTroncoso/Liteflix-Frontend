@@ -21,7 +21,7 @@
         </div>
         <div
           class="add-file"
-          ref="addFile"
+          ref="addFile1"
           @dragover="onDragOver"
           @dragleave="onDragLeave"
           @drop="onDrop"
@@ -36,13 +36,13 @@
 
         <div
           class="add-file progress-bar-container"
-          ref="addFile"
+          ref="addFile2"
           v-show="showProgressBar"
         >
           <span>Cargando {{ parseInt(progresBarWidth) }} %</span>
           <div class="progress-bar" ref="progressBar" style="--width: 10"></div>
           <div class="cancel-button">
-            <button @click="closeModal">Cancelar</button>
+            <button>Cancelar</button>
           </div>
         </div>
         <div class="film-name-category">
@@ -53,7 +53,7 @@
           <div class="film-category">
             <span>Categoría</span>
             <select name="" id="">
-              <option selected disabled>Seleccionar una categoría</option>
+              <option selected disabled></option>
               <option v-for="index in 50" :key="index" :value="index">
                 Opcion X
               </option>
@@ -114,13 +114,15 @@ export default {
     },
     onDragOver(e) {
       e.preventDefault();
-      this.$refs.addFile.classList.add("add-file-active");
+      this.$refs.addFile1.classList.add("add-file-active");
     },
     onDragLeave() {
-      this.$refs.addFile.classList.remove("add-file-active");
+      this.$refs.addFile1.classList.remove("add-file-active");
     },
     onDrop(e) {
       e.preventDefault();
+
+      this.$refs.addFile1.classList.remove("add-file-active");
 
       // si sube varios, me quedo con el primero
       const file = e.dataTransfer.files[0];
@@ -134,14 +136,15 @@ export default {
 
         fileReader.onload = () => {
           this.showProgressBar = true;
-          this.activateProgressBar();
+          this.activateProgressBar(true);
         };
 
         fileReader.readAsDataURL(file);
       } else {
         //! NO VALIDO
+
         console.log("formato no valido");
-        this.$refs.addFile.classList.remove("add-file-active");
+        this.$refs.addFile1.classList.remove("add-file-active");
       }
     },
     activateProgressBar() {
@@ -250,8 +253,6 @@ a {
   bottom: 8px;
   left: 8px;
 }
-// ---------------------------- TOGGLE MENU ----------------------------
-
 .action {
   margin: 5px 5px 0 0;
   padding: 0;
@@ -261,13 +262,11 @@ a {
   right: 0;
   // background-color: red;
 }
-
 .action:hover .menu {
   top: 50px;
   visibility: visible;
   opacity: 1;
 }
-
 .action .profile {
   position: relative;
   width: 25px;
@@ -284,7 +283,6 @@ a {
   height: 100%;
   object-fit: cover;
 }
-
 // ----------------------------------- modal ---------------------------------------
 .modal-container {
   display: none;
@@ -300,7 +298,6 @@ a {
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.8);
 }
-
 .modal-content {
   background-color: #fefefe;
   margin: auto;
@@ -380,10 +377,9 @@ a {
   padding: 10px;
   // border: 2px solid red;
 }
-
 .progress-bar-container {
   background-color: #f3f3f3;
-  border: 2px solid green;
+  // border: 2px solid green;
   display: block;
   padding: 0 31px 15px 29px;
 
@@ -406,7 +402,6 @@ a {
     justify-content: center;
   }
 }
-
 .film-name-category {
   // border: 2px solid red;
   display: grid;
@@ -432,7 +427,6 @@ a {
   color: #9b9b9b;
   text-transform: uppercase;
 }
-
 .film-name input,
 .film-category select {
   border: 0;
@@ -447,7 +441,6 @@ a {
   -webkit-appearance: none;
   appearance: none;
 }
-
 *:focus {
   outline: none;
 }
