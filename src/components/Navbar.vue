@@ -20,9 +20,20 @@
         <div class="close-container">
           <span class="close" @click="closeModal">&times;</span>
         </div>
-        <div class="add-file">
+        <div
+          class="add-file"
+          ref="addFile"
+          @dragover="onDragOver"
+          @dragleave="onDragLeave"
+          @drop="onDrop"
+        >
           <img src="../../static/clip.png" alt="" />
-          <input type="file" id="actual-btn" hidden />
+          <input
+            type="file"
+            id="actual-btn"
+            hidden
+            accept=".pdf,.jpg,.jpeg,.png"
+          />
           <label for="actual-btn"
             ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
           >
@@ -119,16 +130,11 @@
 </template>
 
 <script>
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 export default {
   name: "Navbar",
+  data: () => ({
+    filelist: [], // Store our uploaded files
+  }),
   methods: {
     // ------------ menu ----------
     // menuShow() {
@@ -147,6 +153,36 @@ export default {
     closeModal() {
       const modal = this.$refs.myModal;
       modal.style.display = "none";
+    },
+    onDragOver(e) {
+      e.preventDefault();
+      this.$refs.addFile.classList.add("add-file-active");
+    },
+    onDragLeave() {
+      this.$refs.addFile.classList.remove("add-file-active");
+    },
+    onDrop(e) {
+      e.preventDefault();
+
+      // si sube varios, me quedo con el primero
+      const file = e.dataTransfer.files[0];
+
+      const fileType = file.type;
+
+      let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+
+      if (validExtensions.includes(fileType)) {
+        console.log("formato valido");
+
+        let fileReader = new FileReader();
+        fileReader.onload = () => {
+          console.log(fileReader.result);
+        };
+        fileReader.readAsDataURL(file);
+      } else {
+        console.log("formato no valido");
+        this.$refs.addFile.classList.remove("add-file-active");
+      }
     },
   },
 };
@@ -452,6 +488,10 @@ a {
   width: 20px;
   height: 20px;
   margin-right: 7px;
+}
+.add-file-active {
+  // background: red;
+  border: 2px solid #0076ff;
 }
 .film-name-category {
   // border: 2px solid red;
