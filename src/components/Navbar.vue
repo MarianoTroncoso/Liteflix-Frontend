@@ -173,7 +173,7 @@ export default {
       let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
 
       if (validExtensions.includes(fileType)) {
-        console.log("formato valido");
+        // console.log("formato valido");
 
         let fileReader = new FileReader();
 
@@ -184,18 +184,36 @@ export default {
 
           const progresBar = this.$refs.progressBar;
 
-          setInterval(() => {
-            const computedStyle = getComputedStyle(progresBar);
-            const width =
-              parseFloat(computedStyle.getPropertyValue("--width")) || 0;
-            progresBar.style.setProperty("--width", width + 0.1);
-          }, 5);
+          this.activateProgressBar();
+
+          // setInterval(() => {
+          //   const computedStyle = getComputedStyle(progresBar);
+          //   const width =
+          //     parseFloat(computedStyle.getPropertyValue("--width")) || 0;
+          //   progresBar.style.setProperty("--width", width + 0.1);
+          // }, 5);
         };
+
         fileReader.readAsDataURL(file);
       } else {
         //! NO VALIDO
         console.log("formato no valido");
         this.$refs.addFile.classList.remove("add-file-active");
+      }
+    },
+    activateProgressBar() {
+      const progresBar = this.$refs.progressBar;
+      let width = 0;
+      let interval = setInterval(change, 5);
+
+      function change() {
+        if (width == 100) {
+          clearInterval(interval);
+        } else {
+          const computedStyle = getComputedStyle(progresBar);
+          width = parseFloat(computedStyle.getPropertyValue("--width")) || 0;
+          progresBar.style.setProperty("--width", width + 0.1);
+        }
       }
     },
   },
