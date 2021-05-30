@@ -1,8 +1,11 @@
 <template>
-  <div class="homepage-container">
+  <div class="homepage-container" ref="home">
     <div class="">
       <Header />
-      <Destacada />
+      <Destacada
+        :title="this.destacada.title"
+        :overview="this.destacada.overview"
+      />
       <Proximamente />
       <Populares />
     </div>
@@ -10,6 +13,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "../components/Header";
 import Destacada from "../components/Destacada";
 import Proximamente from "../components/Proximamente";
@@ -24,22 +28,43 @@ export default {
     Populares,
   },
   data() {
-    return {};
+    return {
+      destacada: {
+        title: "",
+        overview: "",
+        backdropPath: "",
+        posterPath: "",
+      },
+    };
+  },
+  mounted() {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20"
+      )
+      .then((response) => {
+        const orderByDateResults = response.data.results.sort((a, b) => {
+          return new Date(b.release_date) - new Date(a.release_date);
+        });
+
+        this.destacada.title = orderByDateResults[0].title;
+        this.destacada.overview = orderByDateResults[0].overview.substring(
+          0,
+          250
+        );
+        this.$refs.home.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${orderByDateResults[0].backdrop_path})`;
+      });
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .homepage-container {
-  // poster
-  background: url("https://image.tmdb.org/t/p/w1280/13B6onhL6FzSN2KaNeQeMML05pS.jpg")
-      no-repeat,
-    #000000 no-repeat;
+  background: no-repeat, #000000 no-repeat;
   background-size: 100% 760px;
 }
 @media screen and (min-width: 760px) {
   .homepage-container {
-    // backdrop
     background: url("https://image.tmdb.org/t/p/w1280/nz8xWrTKZzA5A7FgxaM4kfAoO1W.jpg")
         no-repeat,
       #000000 no-repeat;

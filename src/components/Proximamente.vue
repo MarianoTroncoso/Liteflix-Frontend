@@ -21,10 +21,12 @@
           :src="image"
           alt=""
         /> -->
-        <ImagenProximamente />
-        <ImagenProximamente />
-        <ImagenProximamente />
-        <ImagenProximamente />
+        <ImagenProximamente
+          v-for="(image, index) in images"
+          :key="index"
+          :title="image.title"
+          :image="'https://image.tmdb.org/t/p/w1280' + image.backdrop_path"
+        />
       </div>
       <!-- <div class="carousel">
         <div class="carouselbox" ref="carouselbox">
@@ -44,6 +46,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import ImagenProximamente from "./ImagenProximamente";
 /*
 var scrollPerClick = 270;
@@ -86,13 +89,18 @@ export default {
   },
   data() {
     return {
-      images: [
-        "https://image.tmdb.org/t/p/w1280/6ELCZlTA5lGUops70hKdB83WJxH.jpg",
-        "https://image.tmdb.org/t/p/w1280/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg",
-        "https://image.tmdb.org/t/p/w1280/ouOojiypBE6CD1aqcHPVq7cJf2R.jpg",
-        "https://image.tmdb.org/t/p/w1280/lkInRiMtLgl9u9xE0By5hqf66K8.jpg",
-      ],
+      images: [],
     };
+  },
+  mounted() {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/upcoming?api_key=6f26fd536dd6192ec8a57e94141f8b20"
+      )
+      .then((response) => {
+        this.images = response.data.results.slice(0, 4);
+        console.log(this.images);
+      });
   },
 };
 </script>

@@ -3,10 +3,7 @@
     <div class="content">
       <a href="#" target="">
         <div class="content-overlay"></div>
-        <img
-          class="content-image"
-          src="https://image.tmdb.org/t/p/w1280/6ELCZlTA5lGUops70hKdB83WJxH.jpg"
-        />
+        <img class="content-image" :src="image" />
         <div class="content-details fadeIn-bottom grid-container">
           <div class="row-1">
             <a href="#">
@@ -24,7 +21,9 @@
             <a href="#"><img src="../../static/play-2.svg" alt="" /></a>
           </div>
           <div class="row-3">
-            <p class="title"><b>Black Mirror</b></p>
+            <p class="title">
+              <b>{{ title }}</b>
+            </p>
             <p class="desc">
               98% Coincidencia <span class="min-age">+16</span> 1h 30 min
             </p>
@@ -38,7 +37,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "ImagenProximamente",
+  props: {
+    title: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

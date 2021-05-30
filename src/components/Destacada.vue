@@ -3,7 +3,7 @@
   <div class="destacada-wrapper">
     <div class="destacada-wrapper-mobile">
       <h4>Original de <b>Liteflix</b></h4>
-      <h1>Kids At School</h1>
+      <h1>{{ title }}</h1>
       <div class="buttons-mobile">
         <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
         <a href="#" class="plus-circle"
@@ -14,14 +14,14 @@
     <div class="destacada-wrapper-desktop">
       <!--  bg-secondary -->
       <h4>Original de <b>Liteflix</b></h4>
-      <h1>{{ destacada.title }}</h1>
+      <h1>{{ title }}</h1>
       <div class="buttons-desktop">
         <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
         <DestacadaButton text="Mi lista" icon="../../static/plus.svg" />
       </div>
       <div class="descripcion">
         <p><b>Ver temporada 1</b></p>
-        <p>{{ destacada.overview }}...</p>
+        <p>{{ overview }}...</p>
       </div>
     </div>
   </div>
@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import DestacadaButton from "../components/DestacadaButton";
 
 export default {
@@ -61,27 +60,16 @@ export default {
       },
     };
   },
+  props: {
+    title: {
+      type: String,
+    },
+    overview: {
+      type: String,
+    },
+  },
   components: {
     DestacadaButton,
-  },
-  mounted() {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20"
-      )
-      .then((response) => {
-        // console.log(response.data.results)
-        const orderByDateResults = response.data.results.sort((a, b) => {
-          return new Date(b.release_date) - new Date(a.release_date);
-        });
-        console.log(orderByDateResults[0]);
-        // this.destacada.title = orderByDateResults[0].title;
-        this.destacada.title = orderByDateResults[0].title;
-        this.destacada.overview = orderByDateResults[0].overview.substring(
-          0,
-          250
-        );
-      });
   },
 };
 </script>
