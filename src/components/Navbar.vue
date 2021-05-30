@@ -10,10 +10,48 @@
       <li><a href="#">Agregados recientemente</a></li>
       <li><a href="#">Mi lista</a></li>
     </ul>
-    <button class="add-movie-button">
+    <button class="add-movie-button" id="myBtn" @click="openModal">
       <img src="../../static/plus.svg" alt="" />
       <span>Agregar película</span>
     </button>
+    <div id="myModal" ref="myModal" class="modal-container">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="close-container">
+          <span class="close" @click="closeModal">&times;</span>
+        </div>
+        <div class="add-file">
+          <img src="../../static/clip.png" alt="" />
+          <input type="file" id="actual-btn" hidden />
+          <label for="actual-btn"
+            ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
+          >
+        </div>
+        <div class="film-name-category">
+          <div class="film-name">
+            <span>Nombre de la Pelicula</span>
+            <input type="text" />
+          </div>
+          <div class="film-category">
+            <span>Categoría</span>
+            <select name="" id="">
+              <option selected disabled>Seleccionar una categoría</option>
+              <option v-for="index in 50" :key="index" :value="index">
+                Opcion X
+              </option>
+              <!-- <option value="">Acción</option>
+              <option value="">Animación</option>
+              <option value="">Aventuras</option>
+              <option value="">Ciencia Ficción</option>
+              <option value="">Comedia</option>
+              <option value="">Documentales</option> -->
+            </select>
+          </div>
+        </div>
+        <button class="upload-film">Subir Película</button>
+      </div>
+    </div>
+
     <!-- RIGHT ITEMS -->
     <div class="right-items">
       <ul>
@@ -81,9 +119,18 @@
 </template>
 
 <script>
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
 export default {
   name: "Navbar",
   methods: {
+    // ------------ menu ----------
     // menuShow() {
     //   const toggleMenu = this.$refs.menu;
     //   toggleMenu.classList.toggle("active");
@@ -92,6 +139,15 @@ export default {
     //   const toggleMenu = this.$refs.menu;
     //   toggleMenu.classList.remove("active");
     // },
+
+    openModal() {
+      const modal = this.$refs.myModal;
+      modal.style.display = "block";
+    },
+    closeModal() {
+      const modal = this.$refs.myModal;
+      modal.style.display = "none";
+    },
   },
 };
 </script>
@@ -329,5 +385,131 @@ a {
 }
 .ul-settings li:last-child {
   border-bottom: 0;
+}
+// ----------------------------------- modal ---------------------------------------
+/* The Modal (background) */
+.modal-container {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  // padding-top: 100px; /* Location of the box */
+  padding: 100px 0 0 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  // padding: 20px;
+  border: 1px solid #888;
+  // width: 80%;
+  width: 730px;
+  height: 354px;
+}
+.close-container {
+  // border: 2px solid green;
+  height: auto;
+  padding: 10px 14px 0 0;
+}
+.close {
+  // border: 2px solid blue;
+  // color: #aaaaaa;
+  float: right;
+  font-size: 17px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.add-file {
+  width: 660px;
+  height: 100px;
+  margin: 0 35px 0 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #9b9b9b;
+  border-radius: 10px;
+}
+.add-file label {
+  font-size: 16px;
+  font-family: "Montserrat";
+}
+.add-file label span {
+  color: #0076ff;
+  font-weight: bold;
+}
+.add-file img {
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+}
+.film-name-category {
+  // border: 2px solid red;
+  display: grid;
+  grid-template-columns: 345px 345px;
+  padding: 30px 35px 44px 35px;
+}
+.film-name,
+.film-category {
+  // border: 2px solid blue;
+  display: grid;
+  grid-template-rows: auto auto;
+  padding-right: 30px;
+}
+.film-name span,
+.film-category span {
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 5px;
+  color: #9b9b9b;
+  text-transform: uppercase;
+}
+
+.film-name input,
+.film-category select {
+  border: 0;
+  border-bottom: 2px solid #0076ff;
+  font-family: "Montserrat";
+  font-size: 16px;
+  margin-top: 12px;
+  color: #000000;
+  font-weight: 550;
+}
+.film-category select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+*:focus {
+  outline: none;
+}
+.upload-film {
+  // border: 2px solid green;
+  border-radius: 35px;
+  border: 0;
+  width: 350px;
+  height: 70px;
+  margin: 0 auto 27px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  color: white;
+  background-color: #dedede;
 }
 </style>

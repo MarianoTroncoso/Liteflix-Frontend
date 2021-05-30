@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!-- <h3 class="title">Text fadeIn left</h3> -->
     <div class="content">
       <a href="#" target="">
         <div class="content-overlay"></div>
@@ -9,8 +8,6 @@
           src="https://image.tmdb.org/t/p/w1280/6ELCZlTA5lGUops70hKdB83WJxH.jpg"
         />
         <div class="content-details fadeIn-bottom grid-container">
-          <!-- <h3>This is a title</h3>
-          <p>This is a short description</p> -->
           <div class="row-1">
             <a href="#">
               <img
@@ -204,15 +201,15 @@ export default {};
   top: 80%;
 }
 
-.fadeIn-top {
-  top: 20%;
-}
+// .fadeIn-top {
+//   top: 20%;
+// }
 
-.fadeIn-left {
-  left: 20%;
-}
+// .fadeIn-left {
+//   left: 20%;
+// }
 
-.fadeIn-right {
-  left: 80%;
-}
+// .fadeIn-right {
+//   left: 80%;
+// }
 </style>

@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import ImagenPopulares from "./ImagenPopulares";
+
 export default {
   name: "Populares",
   data() {
@@ -52,6 +54,9 @@ export default {
         "https://cdn.zeplin.io/5d1a67242bdce756be65f5f6/assets/3616C539-3984-499F-A5E7-9E517C58F465.png",
       ],
     };
+  },
+  components: {
+    ImagenPopulares,
   },
 };
 </script>
