@@ -20,23 +20,24 @@
         <div class="close-container">
           <span class="close" @click="closeModal">&times;</span>
         </div>
+        <!-- Add file area -->
         <div
           class="add-file"
           ref="addFile"
           @dragover="onDragOver"
           @dragleave="onDragLeave"
           @drop="onDrop"
+          v-show="!showProgressBar"
         >
           <img src="../../static/clip.png" alt="" />
-          <input
-            type="file"
-            id="actual-btn"
-            hidden
-            accept=".pdf,.jpg,.jpeg,.png"
-          />
-          <label for="actual-btn"
+          <input type="file" id="add-file-input" hidden />
+          <label for="add-file-input"
             ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
           >
+        </div>
+
+        <div class="add-file" ref="addFile" v-show="showProgressBar">
+          <div class="progress-bar" ref="progressBar" style="--width: 10"></div>
         </div>
         <div class="film-name-category">
           <div class="film-name">
@@ -133,7 +134,7 @@
 export default {
   name: "Navbar",
   data: () => ({
-    filelist: [], // Store our uploaded files
+    showProgressBar: false,
   }),
   methods: {
     // ------------ menu ----------
@@ -175,11 +176,24 @@ export default {
         console.log("formato valido");
 
         let fileReader = new FileReader();
+
         fileReader.onload = () => {
-          console.log(fileReader.result);
+          // console.log(fileReader.result);
+
+          this.showProgressBar = true;
+
+          const progresBar = this.$refs.progressBar;
+
+          setInterval(() => {
+            const computedStyle = getComputedStyle(progresBar);
+            const width =
+              parseFloat(computedStyle.getPropertyValue("--width")) || 0;
+            progresBar.style.setProperty("--width", width + 0.1);
+          }, 5);
         };
         fileReader.readAsDataURL(file);
       } else {
+        //! NO VALIDO
         console.log("formato no valido");
         this.$refs.addFile.classList.remove("add-file-active");
       }
@@ -493,6 +507,29 @@ a {
   // background: red;
   border: 2px solid #0076ff;
 }
+.add-file .progress-bar {
+  // display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  color: green;
+  // padding: 0 0 0 12px;
+}
+.add-file .progress-bar::before {
+  content: attr(data-label);
+  position: absolute;
+  left: 0.5em;
+  // top: 0.5em;
+  // bottom: 0.5em;
+  width: calc(var(--width, 0) * 1%);
+  min-width: 2rem;
+  max-width: calc(100% - 1em);
+  background-color: #7ed321;
+  border-radius: 10px;
+  padding: 10px;
+}
 .film-name-category {
   // border: 2px solid red;
   display: grid;
@@ -547,7 +584,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 16px;
   color: white;
   background-color: #dedede;
