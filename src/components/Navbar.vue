@@ -15,12 +15,10 @@
       <span>Agregar película</span>
     </button>
     <div id="myModal" ref="myModal" class="modal-container">
-      <!-- Modal content -->
       <div class="modal-content">
         <div class="close-container">
           <span class="close" @click="closeModal">&times;</span>
         </div>
-        <!-- Add file area -->
         <div
           class="add-file"
           ref="addFile"
@@ -42,7 +40,6 @@
           v-show="showProgressBar"
         >
           <span>Cargando {{ parseInt(progresBarWidth) }} %</span>
-          <!-- <span>Cargando 100%</span> -->
           <div class="progress-bar" ref="progressBar" style="--width: 10"></div>
           <div class="cancel-button">
             <button @click="closeModal">Cancelar</button>
@@ -60,12 +57,6 @@
               <option v-for="index in 50" :key="index" :value="index">
                 Opcion X
               </option>
-              <!-- <option value="">Acción</option>
-              <option value="">Animación</option>
-              <option value="">Aventuras</option>
-              <option value="">Ciencia Ficción</option>
-              <option value="">Comedia</option>
-              <option value="">Documentales</option> -->
             </select>
           </div>
         </div>
@@ -88,47 +79,7 @@
             <div class="profile">
               <img src="../../static/user-01.svg" alt="" />
             </div>
-            <div class="menu" ref="menu">
-              <!-- perfiles -->
-              <ul class="ul-perfiles">
-                <li>
-                  <button class="selected-user-button">
-                    <div class="selected-user-image">
-                      <img src="../../static/fill-1.svg" alt="" />
-                    </div>
-                    <span>Ernesto G…</span>
-                  </button>
-                </li>
-                <li>
-                  <button class="not-selected-user-button">
-                    <div class="not-selected-user-image">
-                      <img src="../../static/fill-2.svg" alt="" />
-                    </div>
-                    <span>User 03</span>
-                  </button>
-                </li>
-                <li>
-                  <button class="not-selected-user-button">
-                    <div class="not-selected-user-image">
-                      <img src="../../static/fill-2.svg" alt="" />
-                    </div>
-                    <span>User 04</span>
-                  </button>
-                </li>
-              </ul>
-              <!-- settings -->
-              <ul class="ul-settings">
-                <li>
-                  <a href="#">Configuración</a>
-                </li>
-                <li>
-                  <a href="#">Ayuda</a>
-                </li>
-                <li>
-                  <a href="#"><b>Log out</b></a>
-                </li>
-              </ul>
-            </div>
+            <UserMenu class="menu" ref="menu" />
           </div>
         </li>
         <li>
@@ -140,12 +91,12 @@
 </template>
 
 <script>
+import UserMenu from "./UserMenu";
 export default {
   name: "Navbar",
-  // data: () => ({
-  //   showProgressBar: false,
-  //   progresBarWidth: 0,
-  // }),
+  components: {
+    UserMenu,
+  },
   data() {
     return {
       showProgressBar: false,
@@ -179,8 +130,6 @@ export default {
       let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
 
       if (validExtensions.includes(fileType)) {
-        // console.log("formato valido");
-
         let fileReader = new FileReader();
 
         fileReader.onload = () => {
@@ -335,134 +284,21 @@ a {
   height: 100%;
   object-fit: cover;
 }
-.action .menu {
-  position: absolute;
-  top: 20px;
-  right: -8px;
-  padding: 11px 9px 4px 10px;
-  background-color: #fff;
-  width: 100%;
-  box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  transition: 0.3s;
-  visibility: hidden;
-  opacity: 0;
-}
-// .action .menu.active {
-//   top: 50px;
-//   visibility: visible;
-//   opacity: 1;
-// }
-.action .menu::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  right: 28px;
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  transform: rotate(45deg);
-  border-radius: 4px;
-}
 
-.action .menu ul li {
-  margin: 0;
-  list-style: none;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.action .menu ul li img {
-  transition: 0.5s;
-}
-
-.action .menu ul li a {
-  display: inline-block;
-  color: #555;
-  font-size: 12px;
-  font-weight: 500;
-  transition: 0.5s;
-}
-
-.ul-perfiles li {
-  padding-top: 5px;
-}
-.ul-perfiles button {
-  width: 111px;
-  height: 37px;
-  padding: 6px 6px 6px 7px;
-  border: 0;
-  border-radius: 18.5px;
-  // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  background-color: white;
-  display: flex;
-  // justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.selected-user-image {
-  // border: 2px solid red;
-  background-color: #ce00ff;
-  width: 25px;
-  height: 25px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 0 0 2px;
-}
-.selected-user-button {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-}
-.not-selected-user-button {
-  color: #9b9b9b;
-}
-.not-selected-user-image {
-  // border: 2px solid red;
-  background-color: #9b9b9b;
-  width: 25px;
-  height: 25px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 0 0 2px;
-}
-.ul-perfiles span {
-  font-family: "Montserrat";
-  font-size: 12px;
-  margin-left: 5px;
-}
-.ul-settings {
-  // border: 2px solid blue;
-}
-.ul-settings li {
-  // border: 2px solid blue;
-  display: flex !important;
-  justify-content: left !important;
-  padding: 7px 0 7px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-.ul-settings li:last-child {
-  border-bottom: 0;
-}
 // ----------------------------------- modal ---------------------------------------
-/* The Modal (background) */
 .modal-container {
   display: none;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  // padding-top: 100px; /* Location of the box */
+  position: fixed;
+  z-index: 1;
+  // padding-top: 100px;
   padding: 100px 0 0 0;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
