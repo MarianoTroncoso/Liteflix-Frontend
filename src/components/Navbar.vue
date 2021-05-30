@@ -36,8 +36,17 @@
           >
         </div>
 
-        <div class="add-file" ref="addFile" v-show="showProgressBar">
+        <div
+          class="add-file progress-bar-container"
+          ref="addFile"
+          v-show="showProgressBar"
+        >
+          <span>Cargando {{ parseInt(progresBarWidth) }} %</span>
+          <!-- <span>Cargando 100%</span> -->
           <div class="progress-bar" ref="progressBar" style="--width: 10"></div>
+          <div class="cancel-button">
+            <button @click="closeModal">Cancelar</button>
+          </div>
         </div>
         <div class="film-name-category">
           <div class="film-name">
@@ -133,20 +142,17 @@
 <script>
 export default {
   name: "Navbar",
-  data: () => ({
-    showProgressBar: false,
-  }),
+  // data: () => ({
+  //   showProgressBar: false,
+  //   progresBarWidth: 0,
+  // }),
+  data() {
+    return {
+      showProgressBar: false,
+      progresBarWidth: 0,
+    };
+  },
   methods: {
-    // ------------ menu ----------
-    // menuShow() {
-    //   const toggleMenu = this.$refs.menu;
-    //   toggleMenu.classList.toggle("active");
-    // },
-    // menuHide() {
-    //   const toggleMenu = this.$refs.menu;
-    //   toggleMenu.classList.remove("active");
-    // },
-
     openModal() {
       const modal = this.$refs.myModal;
       modal.style.display = "block";
@@ -178,20 +184,8 @@ export default {
         let fileReader = new FileReader();
 
         fileReader.onload = () => {
-          // console.log(fileReader.result);
-
           this.showProgressBar = true;
-
-          const progresBar = this.$refs.progressBar;
-
           this.activateProgressBar();
-
-          // setInterval(() => {
-          //   const computedStyle = getComputedStyle(progresBar);
-          //   const width =
-          //     parseFloat(computedStyle.getPropertyValue("--width")) || 0;
-          //   progresBar.style.setProperty("--width", width + 0.1);
-          // }, 5);
         };
 
         fileReader.readAsDataURL(file);
@@ -203,18 +197,18 @@ export default {
     },
     activateProgressBar() {
       const progresBar = this.$refs.progressBar;
-      let width = 0;
-      let interval = setInterval(change, 5);
 
-      function change() {
-        if (width == 100) {
+      let interval = setInterval(() => {
+        if (this.progresBarWidth == 100) {
           clearInterval(interval);
         } else {
           const computedStyle = getComputedStyle(progresBar);
-          width = parseFloat(computedStyle.getPropertyValue("--width")) || 0;
-          progresBar.style.setProperty("--width", width + 0.1);
+          this.progresBarWidth =
+            parseFloat(computedStyle.getPropertyValue("--width")) || 0;
+
+          progresBar.style.setProperty("--width", this.progresBarWidth + 0.1);
         }
-      }
+      }, 5);
     },
   },
 };
@@ -529,16 +523,17 @@ a {
   // display: none;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 30px;
   background-color: #f3f3f3;
-  border-radius: 10px;
-  color: green;
+  // border-radius: 10px;
+  // color: green;
   // padding: 0 0 0 12px;
+  // border: 2px solid blue;
 }
 .add-file .progress-bar::before {
   content: attr(data-label);
   position: absolute;
-  left: 0.5em;
+  // left: 0.5em;
   // top: 0.5em;
   // bottom: 0.5em;
   width: calc(var(--width, 0) * 1%);
@@ -547,7 +542,35 @@ a {
   background-color: #7ed321;
   border-radius: 10px;
   padding: 10px;
+  // border: 2px solid red;
 }
+
+.progress-bar-container {
+  background-color: #f3f3f3;
+  border: 2px solid green;
+  display: block;
+  padding: 0 31px 15px 29px;
+
+  span {
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  button {
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-weight: bold;
+    border: 0;
+    background-color: #f3f3f3;
+  }
+  .cancel-button {
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .film-name-category {
   // border: 2px solid red;
   display: grid;
