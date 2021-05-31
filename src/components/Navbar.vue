@@ -19,17 +19,23 @@
         <div class="close-container">
           <span class="close" @click="closeModal">&times;</span>
         </div>
-        <form @submit="postMovie" method="post">
+        <FormMovie />
+        <!-- <form @submit="postMovie" method="post" enctype="multipart/form-data">
           <div
             class="add-file"
             ref="addFile1"
             @dragover="onDragOver"
             @dragleave="onDragLeave"
             @drop="onDrop"
-            v-show="!showProgressBar"
+            v-show="showAddFile"
           >
             <img src="../../static/clip.png" alt="" />
-            <input type="file" id="add-file-input" hidden />
+            <input
+              type="file"
+              id="add-file-input"
+              hidden
+              @change="onFileSelected"
+            />
             <label for="add-file-input"
               ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
             >
@@ -44,12 +50,13 @@
             <div
               class="progress-bar"
               ref="progressBar"
-              style="--width: 10"
+              style="--width: 0"
             ></div>
             <div class="cancel-button">
               <button @click="cancelar">Cancelar</button>
             </div>
           </div>
+
           <div class="film-name-category">
             <div class="film-name">
               <span>Nombre de la Pelicula</span>
@@ -63,8 +70,9 @@
               </select>
             </div>
           </div>
+
           <button class="upload-film" type="submit">Subir Película</button>
-        </form>
+        </form> -->
       </div>
     </div>
 
@@ -98,15 +106,20 @@
 import axios from "axios";
 
 import UserMenu from "./UserMenu";
+import FormMovie from "./FormMovie";
 export default {
   name: "Navbar",
   components: {
     UserMenu,
+    FormMovie,
   },
   data() {
     return {
-      showProgressBar: false,
+      showAddFile: true, // por defecto mostrar "Agregar archivo..."
+      showProgressBar: false, // barra cargando sin error
+      showProgressBarError: false, // barra con error
       progresBarWidth: 0,
+      showProgressBarError: false,
       // form data
       movie: {
         name: "",
@@ -124,10 +137,13 @@ export default {
       const modal = this.$refs.myModal;
       modal.style.display = "none";
       this.showProgressBar = false; // agregado 1
+      this.showAddFile = true;
       // this.progresBarWidth = 0;
-      const progresBar = this.$refs.progressBar;
-      progresBar.style.setProperty("--width", 0);
+
+      // const progresBar = this.$refs.progressBar;
+      // progresBar.style.setProperty("--width", 0);
     },
+    /*
     onDragOver(e) {
       e.preventDefault();
       this.$refs.addFile1.classList.add("add-file-active");
@@ -152,6 +168,7 @@ export default {
 
         fileReader.onload = () => {
           this.showProgressBar = true;
+          this.showAddFile = false;
           this.progresBarWidth = 0;
           this.activateProgressBar();
         };
@@ -162,13 +179,13 @@ export default {
 
         console.log("formato no valido");
         this.$refs.addFile1.classList.remove("add-file-active");
+
+        this.showAddFile = false;
+        this.showProgressBarError = true;
       }
     },
     activateProgressBar() {
       const progresBar = this.$refs.progressBar;
-
-      console.log("this.progresBarWidth en activate");
-      console.log(this.progresBarWidth);
 
       let interval = setInterval(() => {
         if (this.progresBarWidth < 100 && this.showProgressBar) {
@@ -176,11 +193,8 @@ export default {
           const computedStyle = getComputedStyle(progresBar);
           this.progresBarWidth =
             parseFloat(computedStyle.getPropertyValue("--width")) || 0;
-
           progresBar.style.setProperty("--width", this.progresBarWidth + 0.1);
         } else if (!this.progresBarWidth < 100) {
-          // corto el interval
-
           clearInterval(interval);
         }
       }, 5);
@@ -189,13 +203,13 @@ export default {
       // console.log("cancelar");
       // console.log("this.showProgressBar puesto a false");
       this.showProgressBar = false;
+      this.showAddFile = true;
       //  progress bar puesta a 0
       //console.log("progress bar with a 0");
       const progresBar = this.$refs.progressBar;
       progresBar.style.setProperty("--width", 0);
     },
     postMovie(e) {
-      // console.log(this.movie);
       axios({
         url: "http://localhost:5000/movies",
         method: "post",
@@ -210,6 +224,12 @@ export default {
       e.preventDefault();
       // http://localhost:5000/movies
     },
+    onFileSelected(e) {
+      // console.log(e.target.files[0]);
+      this.movie.image = e.target.files[0];
+      // console.log(this.movie.image);
+    },
+    */
   },
 };
 </script>
@@ -239,18 +259,7 @@ a {
   line-height: normal;
   letter-spacing: normal;
 }
-.add-movie-button span {
-  max-width: 0;
-  -webkit-transition: max-width 1s;
-  transition: max-width 0.5s;
-  display: inline-block;
-  vertical-align: top;
-  white-space: nowrap;
-  overflow: hidden;
-  font-family: "Montserrat";
-  font-size: 16px;
-  color: white;
-}
+
 .add-movie-button:hover span {
   max-width: 7rem;
   margin: 0 17px 0 0;
@@ -263,43 +272,56 @@ a {
   align-items: center;
   padding: 0;
   height: 40px;
+  img {
+    margin: 0 12px 0 12px;
+  }
+  span {
+    max-width: 0;
+    -webkit-transition: max-width 1s;
+    transition: max-width 0.5s;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: white;
+  }
 }
-.add-movie-button img {
-  margin: 0 12px 0 12px;
-}
+
 .right-items {
   margin-left: auto;
   display: flex;
   flex-wrap: wrap;
   position: relative;
   width: auto;
+  li {
+    margin-left: 20px;
+    margin-right: 0;
+  }
+  li:first-child {
+    margin-left: 0px;
+  }
+  li:last-child {
+    margin-left: 0px;
+  }
 }
 .right-items > ul {
   display: inline-flex;
-}
-.right-items li {
-  margin-left: 20px;
-  margin-right: 0;
-}
-.right-items li:first-child {
-  margin-left: 0px;
-}
-.right-items li:last-child {
-  margin-left: 0px;
 }
 .bell {
   background-image: url("../../static/bell.svg");
   background-repeat: no-repeat;
   padding-right: 0;
   margin-bottom: 2px;
-}
-.bell span {
-  width: 6px;
-  height: 6px;
-  position: absolute;
-  top: 2px;
-  bottom: 8px;
-  left: 8px;
+  span {
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: 2px;
+    bottom: 8px;
+    left: 8px;
+  }
 }
 .action {
   margin: 5px 5px 0 0;
@@ -322,15 +344,16 @@ a {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
-.action .profile img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+
 // ----------------------------------- modal ---------------------------------------
 .modal-container {
   display: none;
@@ -380,6 +403,7 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+/*
 .add-file {
   width: 660px;
   height: 100px;
@@ -389,19 +413,19 @@ a {
   align-items: center;
   border: 2px dashed #9b9b9b;
   border-radius: 10px;
-}
-.add-file label {
-  font-size: 16px;
-  font-family: "Montserrat";
-}
-.add-file label span {
-  color: #0076ff;
-  font-weight: bold;
-}
-.add-file img {
-  width: 20px;
-  height: 20px;
-  margin-right: 7px;
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 7px;
+  }
+  label {
+    font-size: 16px;
+    font-family: "Montserrat";
+    span {
+      color: #0076ff;
+      font-weight: bold;
+    }
+  }
 }
 .add-file-active {
   // background: red;
@@ -432,6 +456,7 @@ a {
   padding: 10px;
   // border: 2px solid red;
 }
+
 .progress-bar-container {
   background-color: #f3f3f3;
   // border: 2px solid green;
@@ -514,4 +539,5 @@ a {
   color: white;
   background-color: #dedede;
 }
+*/
 </style>
