@@ -16,51 +16,55 @@
     </button>
     <div id="myModal" ref="myModal" class="modal-container">
       <div class="modal-content">
-        <div class="close-container">
-          <span class="close" @click="closeModal">&times;</span>
-        </div>
-        <div
-          class="add-file"
-          ref="addFile1"
-          @dragover="onDragOver"
-          @dragleave="onDragLeave"
-          @drop="onDrop"
-          v-show="!showProgressBar"
-        >
-          <img src="../../static/clip.png" alt="" />
-          <input type="file" id="add-file-input" hidden />
-          <label for="add-file-input"
-            ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
+        <form @submit="postMovie" method="post">
+          <div class="close-container">
+            <span class="close" @click="closeModal">&times;</span>
+          </div>
+          <div
+            class="add-file"
+            ref="addFile1"
+            @dragover="onDragOver"
+            @dragleave="onDragLeave"
+            @drop="onDrop"
+            v-show="!showProgressBar"
           >
-        </div>
+            <img src="../../static/clip.png" alt="" />
+            <input type="file" id="add-file-input" hidden />
+            <label for="add-file-input"
+              ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
+            >
+          </div>
 
-        <div
-          class="add-file progress-bar-container"
-          ref="addFile2"
-          v-show="showProgressBar"
-        >
-          <span>Cargando {{ parseInt(progresBarWidth) }} %</span>
-          <div class="progress-bar" ref="progressBar" style="--width: 10"></div>
-          <div class="cancel-button">
-            <button @click="cancelar">Cancelar</button>
+          <div
+            class="add-file progress-bar-container"
+            ref="addFile2"
+            v-show="showProgressBar"
+          >
+            <span>Cargando {{ parseInt(progresBarWidth) }} %</span>
+            <div
+              class="progress-bar"
+              ref="progressBar"
+              style="--width: 10"
+            ></div>
+            <div class="cancel-button">
+              <button @click="cancelar">Cancelar</button>
+            </div>
           </div>
-        </div>
-        <div class="film-name-category">
-          <div class="film-name">
-            <span>Nombre de la Pelicula</span>
-            <input type="text" />
+          <div class="film-name-category">
+            <div class="film-name">
+              <span>Nombre de la Pelicula</span>
+              <input type="text" name="name" v-model="movie.name" />
+            </div>
+            <div class="film-category">
+              <span>Categoría</span>
+              <select name="category" id="" v-model="movie.category">
+                <option selected disabled></option>
+                <option v-for="index in 50" :key="index">Opcion X</option>
+              </select>
+            </div>
           </div>
-          <div class="film-category">
-            <span>Categoría</span>
-            <select name="" id="">
-              <option selected disabled></option>
-              <option v-for="index in 50" :key="index" :value="index">
-                Opcion X
-              </option>
-            </select>
-          </div>
-        </div>
-        <button class="upload-film">Subir Película</button>
+          <button class="upload-film" type="submit">Subir Película</button>
+        </form>
       </div>
     </div>
 
@@ -91,6 +95,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import UserMenu from "./UserMenu";
 export default {
   name: "Navbar",
@@ -101,6 +107,12 @@ export default {
     return {
       showProgressBar: false,
       progresBarWidth: 0,
+      // form data
+      movie: {
+        name: "",
+        category: "",
+        image: "",
+      },
     };
   },
   methods: {
@@ -181,6 +193,22 @@ export default {
       //console.log("progress bar with a 0");
       const progresBar = this.$refs.progressBar;
       progresBar.style.setProperty("--width", 0);
+    },
+    postMovie(e) {
+      // console.log(this.movie);
+      axios({
+        url: "http://localhost:5000/movies",
+        method: "post",
+        data: this.movie,
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      e.preventDefault();
+      // http://localhost:5000/movies
     },
   },
 };
@@ -322,10 +350,14 @@ a {
   background-color: #fefefe;
   margin: auto;
   // padding: 20px;
-  border: 1px solid #888;
+  border: 2px solid red;
   // width: 80%;
   width: 730px;
   height: 354px;
+
+  form {
+    border: 2px solid blue;
+  }
 }
 .close-container {
   // border: 2px solid green;

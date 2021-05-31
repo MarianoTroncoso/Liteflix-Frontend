@@ -93,7 +93,7 @@ export default {
       )
       .then((response) => {
         this.images = response.data.results.slice(0, 4);
-        console.log(this.images);
+        // console.log(this.images);
       });
   },
 };
