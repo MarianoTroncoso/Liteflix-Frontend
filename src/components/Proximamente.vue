@@ -6,7 +6,7 @@
         <img
           v-for="(image, index) in images"
           :key="index"
-          :src="image"
+          :src="'https://image.tmdb.org/t/p/w1280' + image.backdrop_path"
           alt=""
         />
       </div>
@@ -15,12 +15,6 @@
     <div class="proximamente-wrapper-desktop">
       <h4>Próximamente</h4>
       <div class="proximamente-imagenes-desktop">
-        <!-- <img
-          v-for="(image, index) in images"
-          :key="index"
-          :src="image"
-          alt=""
-        /> -->
         <ImagenProximamente
           v-for="(image, index) in images"
           :key="index"
@@ -123,14 +117,16 @@ export default {
   color: white;
 }
 .proximamente-imagenes-mobile {
-  display: grid;
+  display: block;
   grid-template-columns: 100%;
   padding: 0 15.3px 10px 0;
+  // border: 2px solid red;
 }
 .proximamente-imagenes-mobile img {
   width: 100%;
   height: auto;
   margin-bottom: 10px;
+  // border: 2px solid blue;
 }
 // ----------------- desktop -----------------
 .proximamente-wrapper-desktop {
