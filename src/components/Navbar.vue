@@ -16,10 +16,10 @@
     </button>
     <div id="myModal" ref="myModal" class="modal-container">
       <div class="modal-content">
+        <div class="close-container">
+          <span class="close" @click="closeModal">&times;</span>
+        </div>
         <form @submit="postMovie" method="post">
-          <div class="close-container">
-            <span class="close" @click="closeModal">&times;</span>
-          </div>
           <div
             class="add-file"
             ref="addFile1"
@@ -349,26 +349,29 @@ a {
 .modal-content {
   background-color: #fefefe;
   margin: auto;
+  // padding: 20px 0 0 0;
   // padding: 20px;
-  border: 2px solid red;
+  // border: 2px solid red;
   // width: 80%;
   width: 730px;
   height: 354px;
 
   form {
-    border: 2px solid blue;
+    // border: 2px solid blue;
+    // padding-top: 10px;
   }
 }
 .close-container {
   // border: 2px solid green;
   height: auto;
-  padding: 10px 14px 0 0;
+  // padding: 10px 14px 0 0;
+  padding: 5px 14px 5px 0;
 }
 .close {
   // border: 2px solid blue;
   // color: #aaaaaa;
   float: right;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
 }
 .close:hover,
