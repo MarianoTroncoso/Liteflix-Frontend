@@ -42,7 +42,7 @@
           <span>Cargando {{ parseInt(progresBarWidth) }} %</span>
           <div class="progress-bar" ref="progressBar" style="--width: 10"></div>
           <div class="cancel-button">
-            <button>Cancelar</button>
+            <button @click="cancelar">Cancelar</button>
           </div>
         </div>
         <div class="film-name-category">
@@ -111,6 +111,10 @@ export default {
     closeModal() {
       const modal = this.$refs.myModal;
       modal.style.display = "none";
+      this.showProgressBar = false; // agregado 1
+      // this.progresBarWidth = 0;
+      const progresBar = this.$refs.progressBar;
+      progresBar.style.setProperty("--width", 0);
     },
     onDragOver(e) {
       e.preventDefault();
@@ -136,7 +140,8 @@ export default {
 
         fileReader.onload = () => {
           this.showProgressBar = true;
-          this.activateProgressBar(true);
+          this.progresBarWidth = 0;
+          this.activateProgressBar();
         };
 
         fileReader.readAsDataURL(file);
@@ -150,17 +155,32 @@ export default {
     activateProgressBar() {
       const progresBar = this.$refs.progressBar;
 
+      console.log("this.progresBarWidth en activate");
+      console.log(this.progresBarWidth);
+
       let interval = setInterval(() => {
-        if (this.progresBarWidth == 100) {
-          clearInterval(interval);
-        } else {
+        if (this.progresBarWidth < 100 && this.showProgressBar) {
+          // aumento la progress bar
           const computedStyle = getComputedStyle(progresBar);
           this.progresBarWidth =
             parseFloat(computedStyle.getPropertyValue("--width")) || 0;
 
           progresBar.style.setProperty("--width", this.progresBarWidth + 0.1);
+        } else if (!this.progresBarWidth < 100) {
+          // corto el interval
+
+          clearInterval(interval);
         }
       }, 5);
+    },
+    cancelar() {
+      // console.log("cancelar");
+      // console.log("this.showProgressBar puesto a false");
+      this.showProgressBar = false;
+      //  progress bar puesta a 0
+      //console.log("progress bar with a 0");
+      const progresBar = this.$refs.progressBar;
+      progresBar.style.setProperty("--width", 0);
     },
   },
 };
@@ -289,7 +309,7 @@ a {
   position: fixed;
   z-index: 1;
   // padding-top: 100px;
-  padding: 100px 0 0 0;
+  padding: 200px 0 0 0;
   left: 0;
   top: 0;
   width: 100%;
