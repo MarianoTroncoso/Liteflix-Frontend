@@ -56,17 +56,73 @@
         </div>
         <div class="film-category">
           <span>Categoría</span>
-          <select name="category" id="" v-model="movie.category">
+          <!-- <select
+            name="category"
+            id=""
+            v-model="movie.category"
+            class="select-category"
+          >
             <option selected disabled></option>
-            <!-- <option v-for="index in 50" :key="index">Opcion X</option> -->
+
             <option
-              value=""
+              :value="category"
               v-for="(category, index) in categories"
               :key="index"
             >
               {{ category }}
             </option>
-          </select>
+          </select> -->
+          <form
+            action=""
+            style="
+              display: flex;
+              align-items: center;
+              border-bottom: 2px solid #0076ff;
+            "
+          >
+            <div class="selectbox">
+              <div class="select" ref="select" @click="activateSelect">
+                <div class="contenido-select">
+                  <p class="cateory-title" ref="cateoryTitle">
+                    Selecciona la categoría
+                  </p>
+                </div>
+              </div>
+              <!-- opciones -->
+              <!--  <div |tions" ref="options">
+                <a
+                  href="#"
+                  class="option"
+                  v-for="(category, index) in categories"
+                  :key="index"
+                  @click="actualizarCategoria"
+                >
+                  <div class="contenido-option">{{ category }}</div>
+                </a>
+              </div> -->
+              <div class="options-container" ref="optionsContainer">
+                <div class="options">
+                  <ul>
+                    <li
+                      class="option"
+                      @click="actualizarCategoria"
+                      v-for="(category, index) in categories"
+                      :key="index"
+                    >
+                      {{ category }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <input
+              type="hidden"
+              name="category"
+              id=""
+              ref="inputSelect"
+              :value="this.movie.category"
+            />
+          </form>
         </div>
       </div>
       <button class="upload-film" type="submit">Subir Película</button>
@@ -191,6 +247,29 @@ export default {
       this.movie.image = e.target.files[0];
       console.log(this.movie.image);
     },
+    activateSelect() {
+      const select = this.$refs.select;
+      select.classList.toggle("active");
+
+      const optionsContainer = this.$refs.optionsContainer;
+      optionsContainer.classList.toggle("active");
+
+      // const options = this.$refs.options;
+      // options.classList.toggle("active");
+    },
+    actualizarCategoria(e) {
+      e.preventDefault();
+
+      this.movie.category = e.currentTarget.innerText;
+
+      // actualizar arriba
+      const cateoryTitle = this.$refs.cateoryTitle;
+      cateoryTitle.innerHTML = e.currentTarget.innerText;
+
+      // cierro
+      const optionsContainer = this.$refs.optionsContainer;
+      optionsContainer.classList.toggle("active");
+    },
   },
 };
 </script>
@@ -265,7 +344,6 @@ export default {
     margin-top: 5px;
   }
 }
-
 .progress-bar-container {
   background-color: #f3f3f3;
   // border: 2px solid green;
@@ -331,6 +409,14 @@ export default {
   display: grid;
   grid-template-rows: auto auto;
   padding-right: 30px;
+
+  select:focus {
+    // border: 2px solid blue;
+    // background-color: lightgrey;
+
+    // border-radius: 10px;
+    // color: white;
+  }
 }
 .film-name span,
 .film-category span {
@@ -375,5 +461,91 @@ export default {
   font-size: 16px;
   color: white;
   background-color: #dedede;
+}
+// --------------------------------------- SELECT ---------------------------------
+.selectbox {
+  // border: 2px solid green;
+  // padding: 0 15px 0 0;
+
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  p {
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    // color: black;
+  }
+  // scroll bar
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f3f3f3;
+    border-radius: 5.5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #9b9b9b;
+    border-radius: 5.5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: gray;
+  }
+}
+.select {
+  // border: 2px solid blue;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.2s ease all;
+  // position relative
+  z-index: 200; //!CAMBIAR
+  font-family: "Montserrat";
+  font-size: 16px;
+}
+.select.active,
+.select:hover {
+  // border: 2px solid red;
+}
+.options-container {
+  background-color: white;
+  padding: 20px 30px 25px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+  display: none;
+}
+.options {
+  // border: 2px solid orange;
+  // box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 10px;
+  z-index: 100; //!CAMBIAR
+  // display: none;
+  width: 300px;
+  height: 230px;
+  padding: 0px 30px 0 20px;
+  overflow-y: scroll;
+  // margin: 10px 0 0 0;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      cursor: pointer;
+      color: #9b9b9b;
+      font-family: "Montserrat";
+      font-size: 16px;
+      line-height: 2.5;
+      border-bottom: 1px solid #cccccc;
+    }
+    li:hover {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
+.options-container.active {
+  display: block;
 }
 </style>
