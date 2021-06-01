@@ -1,6 +1,7 @@
 <template>
   <div>
     <form @submit="postMovie" method="post" enctype="multipart/form-data">
+      <!----------------------------- SUBIR ARCHIVO: showAddFile ----------------------------->
       <div
         class="add-file"
         ref="addFile1"
@@ -21,6 +22,7 @@
         >
       </div>
 
+      <!----------------------------- PROGRESS BAR: showProgressBar ----------------------------->
       <div
         class="add-file progress-bar-container"
         ref="addFile2"
@@ -33,6 +35,20 @@
         </div>
       </div>
 
+      <!----------------------------- ERROR: showError ----------------------------->
+      <div
+        class="add-file progress-bar-container-error"
+        ref=""
+        v-show="showError"
+      >
+        <span><b>Error!</b> No se pudo cargar la película</span>
+        <div class="progress-bar-error" style=""></div>
+        <div class="tryagain-button">
+          <button @click="reintentar">Reintentar</button>
+        </div>
+      </div>
+
+      <!----------------------------- FILM Y CATEGORIA ----------------------------->
       <div class="film-name-category">
         <div class="film-name">
           <span>Nombre de la Pelicula</span>
@@ -42,11 +58,17 @@
           <span>Categoría</span>
           <select name="category" id="" v-model="movie.category">
             <option selected disabled></option>
-            <option v-for="index in 50" :key="index">Opcion X</option>
+            <!-- <option v-for="index in 50" :key="index">Opcion X</option> -->
+            <option
+              value=""
+              v-for="(category, index) in categories"
+              :key="index"
+            >
+              {{ category }}
+            </option>
           </select>
         </div>
       </div>
-
       <button class="upload-film" type="submit">Subir Película</button>
     </form>
   </div>
@@ -61,15 +83,25 @@ export default {
     return {
       showAddFile: true, // por defecto mostrar "Agregar archivo..."
       showProgressBar: false, // barra cargando sin error
-      showProgressBarError: false, // barra con error //!PONER A FALSE
+      showError: false,
       progresBarWidth: 0,
-      showProgressBarError: false,
+
       // form data
       movie: {
         name: "",
         category: "",
         image: "",
       },
+      categories: [
+        "Acción",
+        "Animación",
+        "Aventuras",
+        "Ciencia Ficción",
+        "Comedia",
+        "Documentales",
+        "Drama",
+        "Amor",
+      ],
     };
   },
   methods: {
@@ -105,11 +137,12 @@ export default {
       } else {
         //! NO VALIDO
 
-        console.log("formato no valido");
+        // console.log("formato no valido");
         this.$refs.addFile1.classList.remove("add-file-active");
 
+        // this.showAddFile = true; // mostrar de nuevo para subir archivo
         this.showAddFile = false;
-        this.showProgressBarError = true;
+        this.showError = true;
       }
     },
     activateProgressBar() {
@@ -133,6 +166,10 @@ export default {
 
       const progresBar = this.$refs.progressBar;
       progresBar.style.setProperty("--width", 0);
+    },
+    reintentar() {
+      this.showError = false;
+      this.showAddFile = true;
     },
     postMovie(e) {
       axios({
@@ -197,19 +234,36 @@ export default {
   // padding: 0 0 0 12px;
   // border: 2px solid blue;
 }
-.add-file .progress-bar::before {
-  content: attr(data-label);
-  position: absolute;
-  // left: 0.5em;
-  // top: 0.5em;
-  // bottom: 0.5em;
-  width: calc(var(--width, 0) * 1%);
-  min-width: 2rem;
-  max-width: calc(100% - 1em);
-  background-color: #7ed321;
-  border-radius: 10px;
-  padding: 10px;
-  // border: 2px solid red;
+.add-file {
+  .progress-bar::before {
+    content: attr(data-label);
+    position: absolute;
+    // left: 0.5em;
+    // top: 0.5em;
+    // bottom: 0.5em;
+    width: calc(var(--width, 0) * 1%);
+    min-width: 2rem;
+    max-width: calc(100%); //- 1em
+    background-color: #7ed321;
+    border-radius: 10px;
+    padding: 10px;
+    // border: 2px solid red;
+  }
+  .progress-bar-error::before {
+    content: attr(data-label);
+    position: absolute;
+    // left: 0.5em;
+    // top: 0.5em;
+    // bottom: 0.5em;
+    width: 82%;
+    // min-width: 2rem;
+    // max-width: calc(100%);
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    // border: 2px solid red;
+    margin-top: 5px;
+  }
 }
 
 .progress-bar-container {
@@ -235,6 +289,34 @@ export default {
     // background-color: red;
     display: flex;
     justify-content: center;
+  }
+}
+.progress-bar-container-error {
+  background-color: #f3f3f3;
+  // border: 2px solid green;
+  display: block;
+  padding: 0 31px 15px 29px;
+
+  span {
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  button {
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-weight: bold;
+    border: 0;
+    background-color: #f3f3f3;
+    text-transform: uppercase;
+  }
+  .tryagain-button {
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    // margin: 20px;
+    padding: 33px 0 0 0;
   }
 }
 .film-name-category {
