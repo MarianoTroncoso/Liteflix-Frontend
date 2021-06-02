@@ -194,6 +194,7 @@ export default {
 }
 
 .arrow-down {
+  display: none;
   margin: 10px auto 0 auto;
 }
 
