@@ -32,10 +32,6 @@
 <script>
 import axios from "axios";
 import ImagenMisPeliculas from "./ImagenMisPeliculas";
-/*
-var scrollPerClick = 270;
-var scrollAmount = 0;
-*/
 
 export default {
   name: "MisPeliculas",
