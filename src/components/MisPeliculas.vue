@@ -11,7 +11,6 @@
         />
       </div>
     </div>
-
     <div class="mis-peliculas-wrapper-desktop">
       <h4>Mis películas</h4>
       <div class="mis-peliculas-imagenes-desktop">
