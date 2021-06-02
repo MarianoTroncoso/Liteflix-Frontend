@@ -55,8 +55,10 @@ export default {
   padding: 0;
   // float: left;
   // width: 50%;
-  // border: 2px solid green;
+  // border: 2px solid blue;
   margin-right: 23px;
+  // width: 100%;
+  min-width: 255px;
 }
 
 // .container .title {
@@ -73,7 +75,7 @@ export default {
   //margin: auto;
   overflow: hidden; //! cuidado
   // nuevo
-  width: 255px;
+  // width: 255px;
   // height: 155px;
 }
 

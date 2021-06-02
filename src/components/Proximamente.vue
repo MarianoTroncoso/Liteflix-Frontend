@@ -131,9 +131,13 @@ export default {
 // ----------------- desktop -----------------
 .proximamente-wrapper-desktop {
   display: none;
-  // background-color: red;
-  padding: 17px 0 0px 164px;
+  // padding: 17px 0 0px 164px;
   // border: 2px solid green;
+  width: 80%;
+  margin: 0 auto 0 auto;
+  padding: 17px 0 0 0;
+  // display: flex;
+  justify-content: center;
 }
 .proximamente-wrapper-desktop h4 {
   font-family: "Montserrat";
@@ -144,8 +148,10 @@ export default {
 .proximamente-imagenes-desktop {
   display: inline-flex;
   overflow: hidden;
-
-  padding: 23.3px 0px 0px 0px;
+  // border: 2px solid red;
+  width: 100%;
+  // padding: 23.3px 0px 0px 0px;
+  padding-top: 23px;
 }
 .proximamente-imagenes-desktop img {
   width: 255px;

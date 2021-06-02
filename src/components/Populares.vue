@@ -13,17 +13,6 @@
     </div>
     <div class="populares-wrapper-desktop">
       <h4>Populares de Liteflix</h4>
-      <!-- <div class="carousel">
-        <div class="carouselbox">
-          <img
-            v-for="(image, index) in images"
-            :key="index"
-            :src="'https://image.tmdb.org/t/p/w1280' + image.poster_path"
-            alt=""
-            :class="'img-' + index"
-          />
-        </div>
-      </div> -->
       <div class="populares-imagenes-desktop">
         <ImagenPopulares
           v-for="(image, index) in images"
@@ -90,8 +79,11 @@ export default {
 }
 .populares-wrapper-desktop {
   display: none;
-  padding: 40.7px 0 67.7px 165px;
+  // padding: 40.7px 0 67.7px 165px;
+  padding: 40px 0 0 0;
   // border: 2px solid red;
+  width: 80%;
+  margin: 0 auto 0 auto;
 }
 .populares-wrapper-desktop h4 {
   font-family: "Montserrat";
@@ -103,6 +95,10 @@ export default {
 .populares-imagenes-desktop {
   display: inline-flex;
   padding-top: 9.3px;
+  position: relative;
+  // border: 2px solid yellow;
+  width: 100%;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 760px) {

@@ -99,9 +99,13 @@ export default {
 }
 .destacada-wrapper-desktop {
   display: none;
-  width: 33.5625rem;
+  // width: 33.5625rem;
+  width: 80%;
   color: white;
-  padding: 82px 0 0 164px;
+  // padding: 82px 0 0 164px;
+  padding: 90px 0 0 0;
+  margin: 0 auto 0 auto;
+  // border: 2px solid red;
 }
 .destacada-wrapper-desktop h4 {
   font-family: "Montserrat";
@@ -136,6 +140,8 @@ export default {
 }
 .descripcion {
   padding-top: 25px;
+  // border: 2px solid red;
+  width: 45%;
 }
 .descripcion p {
   margin-bottom: 0;
@@ -144,6 +150,8 @@ export default {
 }
 .descripcion p:nth-child(2) {
   height: 168px;
+  overflow: hidden;
+  // border: 2px solid blue;
 }
 @media screen and (min-width: 760px) {
   .destacada-wrapper-desktop {

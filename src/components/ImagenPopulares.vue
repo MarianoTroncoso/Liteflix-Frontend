@@ -23,6 +23,7 @@
                 <img src="../../static/like.png" alt="" />
               </a>
             </div>
+            <img src="../../static/arrow-down.svg" alt="" class="arrow-down" />
           </div>
         </div>
       </a>
@@ -60,8 +61,10 @@ export default {
   //margin: auto;
   overflow: hidden; //! cuidado
   // nuevo
-  width: 255px;
-  // height: 155px;
+  width: 100%;
+  min-width: 255px;
+  // height: 100%;
+  // border: 2px solid blue;
 }
 
 .content .content-overlay {
@@ -202,4 +205,12 @@ export default {
 // .fadeIn-right {
 //   left: 80%;
 // }
+.arrow-down {
+  display: none;
+  border: 2px solid green;
+  margin-top: 80px;
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+}
 </style>

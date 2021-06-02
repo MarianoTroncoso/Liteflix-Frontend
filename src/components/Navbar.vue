@@ -83,8 +83,13 @@ export default {
 
 <style lang="scss" scoped>
 .navbar-wrapper {
-  padding: 20px 165px 0 165px;
+  // padding: 20px 165px 0 165px;
   display: flex;
+  // border: 2px solid red;
+  // width: 1300px;
+  width: 80%;
+  margin: 0 auto 0 auto;
+  padding: 20px 0 0 0;
 }
 #logo-brand {
   margin-right: 20px;

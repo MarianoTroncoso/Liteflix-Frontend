@@ -65,30 +65,7 @@
         </div>
         <div class="film-category">
           <span>Categoría</span>
-          <!-- <select
-            name="category"
-            id=""
-            v-model="movie.category"
-            class="select-category"
-          >
-            <option selected disabled></option>
-
-            <option
-              :value="category"
-              v-for="(category, index) in categories"
-              :key="index"
-            >
-              {{ category }}
-            </option>
-          </select> -->
-          <form
-            action=""
-            style="
-              display: flex;
-              align-items: center;
-              border-bottom: 2px solid #0076ff;
-            "
-          >
+          <form action="" class="form-category">
             <div class="selectbox">
               <div class="select" ref="select" @click="activateSelect">
                 <div class="contenido-select">
@@ -97,18 +74,7 @@
                   </p>
                 </div>
               </div>
-              <!-- opciones -->
-              <!--  <div |tions" ref="options">
-                <a
-                  href="#"
-                  class="option"
-                  v-for="(category, index) in categories"
-                  :key="index"
-                  @click="actualizarCategoria"
-                >
-                  <div class="contenido-option">{{ category }}</div>
-                </a>
-              </div> -->
+
               <div class="options-container" ref="optionsContainer">
                 <div class="options">
                   <ul>
@@ -298,7 +264,7 @@ export default {
       formData.append("category", this.movie.category);
 
       axios
-        .post("http://localhost:5000/movies", formData, {
+        .post("https://liteflix-test-api.herokuapp.com/movies", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -552,6 +518,7 @@ export default {
   font-size: 16px;
   color: white;
   background-color: #dedede;
+  // position: fixed;
 }
 .enable {
   background-color: black;
@@ -604,6 +571,7 @@ export default {
 }
 .options-container {
   background-color: white;
+  // border: 2px solid red;
   padding: 20px 30px 25px 0;
   border-radius: 10px;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
@@ -641,9 +609,12 @@ export default {
 }
 .options-container.active {
   display: block;
+  position: absolute;
 }
-.form {
-  // display: none;
+.form-category {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #0076ff;
 }
 .success {
   display: none;

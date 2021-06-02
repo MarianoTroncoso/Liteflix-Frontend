@@ -116,9 +116,11 @@ export default {
 // ----------------- desktop -----------------
 .mis-peliculas-wrapper-desktop {
   display: none;
-  // background-color: red;
-  padding: 17px 0 60px 164px;
+  // padding: 17px 0 60px 164px;
+  padding: 27px 0 5% 0;
   // border: 2px solid yellow;
+  width: 80%;
+  margin: 0 auto 0 auto;
 }
 .mis-peliculas-wrapper-desktop h4 {
   font-family: "Montserrat";
@@ -130,9 +132,10 @@ export default {
   // border: 2px solid red;
   display: inline-flex;
   overflow: hidden;
-
-  padding: 23.3px 0px 0px 0px;
+  padding: 23.3px 0 0 0;
+  width: 100%;
 }
+
 .mis-peliculas-imagenes-desktop img {
   width: 255px;
   height: 155px;

@@ -69,14 +69,18 @@ export default {
 // }
 
 .content {
-  // border: 2px solid red;
+  // border: 2px solid green;
   position: relative;
   // width: 90%;
   // max-width: 400px;
   //margin: auto;
   overflow: hidden; //! cuidado
   // nuevo
-  width: 255px;
+  width: 100%;
+  min-width: 255px;
+  height: 100%;
+  max-height: 200px;
+  // min-width: 255px;
   // height: 155px;
 }
 
@@ -104,8 +108,11 @@ export default {
 
 .content-image {
   // width: 100%;
-  width: 255px;
-  height: 155px;
+  // width: 255px;
+  width: 100%;
+  // min-width: 255px;
+  height: 100%;
+  // max-height: 255px;
 }
 
 .content-details {
