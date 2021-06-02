@@ -2,7 +2,7 @@
   <div>
     <!-- action-->
     <!-- <form @submit="postMovie" method="POST" enctype="multipart/form-data"> -->
-    <form enctype="multipart/form-data" action="">
+    <form enctype="multipart/form-data" action="" ref="form" class="form">
       <!----------------------------- SUBIR ARCHIVO: showAddFile ----------------------------->
       <div
         class="add-file"
@@ -140,11 +140,25 @@
         :disabled="!this.enableUploadMovieButton"
         type="submit"
         @click="postMovie"
+        :v-show="showUploadMovieButton"
       >
         <!-- :disabled="!this.enableUploadMovieButton" -->
         Subir Película
       </button>
     </form>
+    <div class="success" ref="success">
+      <div class="row-1"><img src="../../static/liteflix.svg" alt="" /></div>
+      <div class="row-2">
+        <h1>Felicitaciones!</h1>
+        <h2>
+          <b>{{ this.movie.name }}</b> fue correctamente subido a la categoría
+          <b>{{ this.movie.category }}</b>
+        </h2>
+      </div>
+      <div class="row-3">
+        <button class="success-close-button" @click="refresh">Cerrar</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -156,6 +170,8 @@ export default {
   data() {
     return {
       showAddFile: true, // por defecto mostrar "Agregar archivo..."
+      showFilmAndCategory: true,
+      showUploadMovieButton: true,
       showProgressBar: false, // barra cargando sin error
       showError: false,
       progresBarWidth: 0,
@@ -164,6 +180,7 @@ export default {
       validMovieCategory: false,
       validMovieImage: false,
       // enableUploadMovieButton: validMovieName,
+      // success: false,
 
       // form data
       movie: {
@@ -286,12 +303,17 @@ export default {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then(function () {
-          console.log("todo bien :D");
+        .then((res) => {
+          console.log("cargando");
+          console.log(res);
+          this.$refs.form.style.display = "none";
+          this.$refs.success.style.display = "grid";
         })
-        .catch(function () {
+        .catch(() => {
           console.log("todo mal D:");
         });
+
+      e.preventDefault();
     },
     activateSelect() {
       const select = this.$refs.select;
@@ -332,6 +354,9 @@ export default {
     },
     checkMovieCategory(e) {
       console.log("checkMovieCategory");
+    },
+    refresh() {
+      window.location.reload();
     },
   },
 };
@@ -616,5 +641,54 @@ export default {
 }
 .options-container.active {
   display: block;
+}
+.form {
+  // display: none;
+}
+.success {
+  display: none;
+  background-color: #7ed321;
+  height: 354px;
+  // display: grid;
+  // justify-content: left;
+  grid-template-rows: auto auto auto;
+  padding: 0 0 0 35px;
+  margin: -30px 0 0 0;
+  border-radius: 5px;
+  color: white;
+  .row-1 {
+    img {
+      // border: 2px solid blue;
+      margin-top: 38px;
+    }
+  }
+  .row-2 {
+    // border: 2px solid red;
+    padding: 44px 0 0 0;
+    font-family: "Montserrat";
+    h1 {
+      font-size: 32px;
+      margin: 0 0 5px 0;
+      font-weight: 500;
+      // font-weight: bold;
+    }
+    h2 {
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+  .row-3 {
+    // border: 2px solid black;
+    padding: 51px 0 25px 0;
+  }
+  .success-close-button {
+    background-color: black;
+    color: white;
+    width: 192px;
+    height: 70px;
+    border-radius: 35px;
+    font-family: "Montserrat";
+    font-size: 16px;
+  }
 }
 </style>
