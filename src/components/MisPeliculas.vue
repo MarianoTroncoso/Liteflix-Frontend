@@ -6,7 +6,7 @@
         <img
           v-for="(movie, index) in movies"
           :key="index"
-          :src="'http://localhost:5000/image/' + movie.image"
+          :src="'https://liteflix-test-api.herokuapp.com/image/' + movie.image"
           alt=""
         />
       </div>
@@ -20,7 +20,9 @@
           :key="index"
           :title="movie.name"
           :category="movie.category"
-          :image="'http://localhost:5000/image/' + movie.image"
+          :image="
+            'https://liteflix-test-api.herokuapp.com/image/' + movie.image
+          "
         />
       </div>
     </div>
@@ -75,11 +77,14 @@ export default {
     };
   },
   mounted() {
-    axios.get("http://localhost:5000/movies").then((response) => {
-      console.log(response.data);
-      this.movies = response.data.slice(0, 4);
-      // console.log(this.images);
-    });
+    axios
+      .get("https://liteflix-test-api.herokuapp.com/movies")
+      .then((response) => {
+        // console.log(response.data);
+        // console.log(process.env.API_URL_BASE);
+        this.movies = response.data.slice(0, 4);
+        // console.log(this.images);
+      });
   },
 };
 </script>
