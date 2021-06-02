@@ -4,9 +4,9 @@
       <h1>Mis películas</h1>
       <div class="mis-peliculas-imagenes-desktop">
         <img
-          v-for="(image, index) in images"
+          v-for="(movie, index) in movies"
           :key="index"
-          :src="image"
+          :src="'http://localhost:5000/image/' + movie.image"
           alt=""
         />
       </div>
@@ -15,9 +15,9 @@
       <h1>Mis películas</h1>
       <div class="mis-peliculas-imagenes-mobile">
         <img
-          v-for="(image, index) in images"
+          v-for="(movie, index) in movies"
           :key="index"
-          :src="image"
+          :src="'http://localhost:5000/image/' + movie.image"
           alt=""
         />
       </div>
@@ -26,16 +26,23 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      images: [
-        "https://image.tmdb.org/t/p/w1280/6ELCZlTA5lGUops70hKdB83WJxH.jpg",
-        "https://image.tmdb.org/t/p/w1280/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg",
-        "https://image.tmdb.org/t/p/w1280/ouOojiypBE6CD1aqcHPVq7cJf2R.jpg",
-        "https://image.tmdb.org/t/p/w1280/lkInRiMtLgl9u9xE0By5hqf66K8.jpg",
-      ],
+      movies: [],
     };
+  },
+  mounted() {
+    axios.get("http://localhost:5000/movies").then((response) => {
+      // this.images = response.data.results.slice(0, 4);
+
+      // console.log(response.data);
+      this.movies = response.data;
+
+      this.movies.forEach((m) => console.log(m));
+    });
   },
 };
 </script>
@@ -44,7 +51,7 @@ export default {
 .mis-peliculas-wrapper-desktop {
   // border: 2px solid white;
   display: none;
-  color: white;
+  // color: white;
   padding: 0 20px 0 164px;
   h1 {
     font-family: "Montserrat";
