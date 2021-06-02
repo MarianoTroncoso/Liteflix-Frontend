@@ -1,6 +1,8 @@
 <template>
   <div>
-    <form @submit="postMovie" method="post" enctype="multipart/form-data">
+    <!-- action-->
+    <!-- <form @submit="postMovie" method="POST" enctype="multipart/form-data"> -->
+    <form enctype="multipart/form-data" action="">
       <!----------------------------- SUBIR ARCHIVO: showAddFile ----------------------------->
       <div
         class="add-file"
@@ -13,11 +15,13 @@
         <img src="../../static/clip.png" alt="" />
         <input
           type="file"
-          id="add-file-input"
+          id="file"
+          name="file"
+          ref="file"
           hidden
-          @change="onFileSelected"
+          @change="actualizarImagen"
         />
-        <label for="add-file-input"
+        <label for="file"
           ><span>Agregar archivo</span> o arrastrarlo y soltarlo aquí</label
         >
       </div>
@@ -125,7 +129,9 @@
           </form>
         </div>
       </div>
-      <button class="upload-film" type="submit">Subir Película</button>
+      <button class="upload-film" type="submit" @click="postMovie">
+        Subir Película
+      </button>
     </form>
   </div>
 </template>
@@ -175,6 +181,65 @@ export default {
 
       const file = e.dataTransfer.files[0];
 
+      this.checkFormat(file);
+
+      // const fileType = file.type;
+
+      // let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+
+      // if (validExtensions.includes(fileType)) {
+      //   let fileReader = new FileReader();
+
+      //   fileReader.onload = () => {
+      //     this.showProgressBar = true;
+      //     this.showAddFile = false;
+      //     this.progresBarWidth = 0;
+      //     this.activateProgressBar();
+      //   };
+
+      //   fileReader.readAsDataURL(file);
+      // } else {
+      //   //! NO VALIDO
+      //   this.$refs.addFile1.classList.remove("add-file-active");
+      //   this.showAddFile = false;
+      //   this.showError = true;
+      // }
+    },
+    actualizarImagen(e) {
+      e.preventDefault();
+      // this.$refs.addFile1.classList.remove("add-file-active"); //! no necesario
+
+      this.movie.image = this.$refs.file.files[0];
+
+      this.checkFormat(this.movie.image);
+
+      // const fileType = this.movie.image.type;
+
+      // let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+
+      // if (validExtensions.includes(fileType)) {
+      //   let fileReader = new FileReader();
+
+      //   fileReader.onload = () => {
+      //     this.showProgressBar = true;
+      //     this.showAddFile = false;
+      //     this.progresBarWidth = 0;
+      //     this.activateProgressBar();
+      //   };
+
+      //   fileReader.readAsDataURL(this.movie.image);
+
+      // } else {
+      //   //! NO VALIDO
+      //   this.$refs.addFile1.classList.remove("add-file-active");
+      //   this.showAddFile = false;
+      //   this.showError = true;
+      // }
+    },
+    checkFormat(file) {
+      console.log("check format");
+      console.log(file);
+
       const fileType = file.type;
 
       let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
@@ -192,11 +257,7 @@ export default {
         fileReader.readAsDataURL(file);
       } else {
         //! NO VALIDO
-
-        // console.log("formato no valido");
         this.$refs.addFile1.classList.remove("add-file-active");
-
-        // this.showAddFile = true; // mostrar de nuevo para subir archivo
         this.showAddFile = false;
         this.showError = true;
       }
@@ -210,42 +271,44 @@ export default {
           const computedStyle = getComputedStyle(progresBar);
           this.progresBarWidth =
             parseFloat(computedStyle.getPropertyValue("--width")) || 0;
-          progresBar.style.setProperty("--width", this.progresBarWidth + 0.1);
+          progresBar.style.setProperty("--width", this.progresBarWidth + 1); //! 0.1
         } else if (!this.progresBarWidth < 100) {
           clearInterval(interval);
         }
       }, 5);
     },
-    cancelar() {
+    cancelar(e) {
+      e.preventDefault();
       this.showProgressBar = false;
       this.showAddFile = true;
 
       const progresBar = this.$refs.progressBar;
       progresBar.style.setProperty("--width", 0);
     },
-    reintentar() {
+    reintentar(e) {
+      e.preventDefault();
       this.showError = false;
       this.showAddFile = true;
     },
     postMovie(e) {
-      axios({
-        url: "http://localhost:5000/movies",
-        method: "post",
-        data: this.movie,
-      })
-        .then((response) => {
-          console.log(response);
+      console.log("post movie");
+      let formData = new FormData();
+      formData.append("file", this.movie.image);
+      formData.append("name", this.movie.name);
+      formData.append("category", this.movie.category);
+
+      axios
+        .post("http://localhost:5000/movies", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         })
-        .catch((error) => {
-          console.log(error);
+        .then(function () {
+          console.log("todo bien :D");
+        })
+        .catch(function () {
+          console.log("todo mal D:");
         });
-      e.preventDefault();
-      // http://localhost:5000/movies
-    },
-    onFileSelected(e) {
-      // console.log(e.target.files[0]);
-      this.movie.image = e.target.files[0];
-      console.log(this.movie.image);
     },
     activateSelect() {
       const select = this.$refs.select;
