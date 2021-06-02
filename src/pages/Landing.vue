@@ -46,6 +46,7 @@ export default {
         "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20"
       )
       .then((response) => {
+        // ordeno por fecha
         const orderByDateResults = response.data.results.sort((a, b) => {
           return new Date(b.release_date) - new Date(a.release_date);
         });

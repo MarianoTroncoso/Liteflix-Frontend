@@ -133,6 +133,7 @@ export default {
   display: none;
   // background-color: red;
   padding: 17px 0 0px 164px;
+  // border: 2px solid green;
 }
 .proximamente-wrapper-desktop h4 {
   font-family: "Montserrat";
