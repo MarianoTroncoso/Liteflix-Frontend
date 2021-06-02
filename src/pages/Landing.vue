@@ -8,6 +8,7 @@
       />
       <Proximamente />
       <Populares />
+      <MisPeliculas />
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@ import Header from "../components/Header";
 import Destacada from "../components/Destacada";
 import Proximamente from "../components/Proximamente";
 import Populares from "../components/Populares";
+import MisPeliculas from "../components/MisPeliculas";
 
 export default {
   name: "Homepage",
@@ -26,6 +28,7 @@ export default {
     Destacada,
     Proximamente,
     Populares,
+    MisPeliculas,
   },
   data() {
     return {
