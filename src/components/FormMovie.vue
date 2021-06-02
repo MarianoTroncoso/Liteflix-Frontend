@@ -56,7 +56,12 @@
       <div class="film-name-category">
         <div class="film-name">
           <span>Nombre de la Pelicula</span>
-          <input type="text" name="name" v-model="movie.name" />
+          <input
+            type="text"
+            name="name"
+            v-model="movie.name"
+            @change="checkMovieName"
+          />
         </div>
         <div class="film-category">
           <span>Categoría</span>
@@ -88,7 +93,7 @@
               <div class="select" ref="select" @click="activateSelect">
                 <div class="contenido-select">
                   <p class="cateory-title" ref="cateoryTitle">
-                    Selecciona la categoría
+                    Seleccionar categoría
                   </p>
                 </div>
               </div>
@@ -129,7 +134,14 @@
           </form>
         </div>
       </div>
-      <button class="upload-film" type="submit" @click="postMovie">
+      <button
+        class="upload-film"
+        :class="{ enable: this.enableUploadMovieButton }"
+        :disabled="!this.enableUploadMovieButton"
+        type="submit"
+        @click="postMovie"
+      >
+        <!-- :disabled="!this.enableUploadMovieButton" -->
         Subir Película
       </button>
     </form>
@@ -147,6 +159,11 @@ export default {
       showProgressBar: false, // barra cargando sin error
       showError: false,
       progresBarWidth: 0,
+      // enable button
+      validMovieName: false,
+      validMovieCategory: false,
+      validMovieImage: false,
+      // enableUploadMovieButton: validMovieName,
 
       // form data
       movie: {
@@ -166,6 +183,13 @@ export default {
       ],
     };
   },
+  computed: {
+    enableUploadMovieButton() {
+      return (
+        this.validMovieName && this.validMovieCategory && this.validMovieImage
+      );
+    },
+  },
   methods: {
     onDragOver(e) {
       e.preventDefault();
@@ -182,59 +206,13 @@ export default {
       const file = e.dataTransfer.files[0];
 
       this.checkFormat(file);
-
-      // const fileType = file.type;
-
-      // let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
-
-      // if (validExtensions.includes(fileType)) {
-      //   let fileReader = new FileReader();
-
-      //   fileReader.onload = () => {
-      //     this.showProgressBar = true;
-      //     this.showAddFile = false;
-      //     this.progresBarWidth = 0;
-      //     this.activateProgressBar();
-      //   };
-
-      //   fileReader.readAsDataURL(file);
-      // } else {
-      //   //! NO VALIDO
-      //   this.$refs.addFile1.classList.remove("add-file-active");
-      //   this.showAddFile = false;
-      //   this.showError = true;
-      // }
     },
     actualizarImagen(e) {
       e.preventDefault();
-      // this.$refs.addFile1.classList.remove("add-file-active"); //! no necesario
 
       this.movie.image = this.$refs.file.files[0];
 
       this.checkFormat(this.movie.image);
-
-      // const fileType = this.movie.image.type;
-
-      // let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
-
-      // if (validExtensions.includes(fileType)) {
-      //   let fileReader = new FileReader();
-
-      //   fileReader.onload = () => {
-      //     this.showProgressBar = true;
-      //     this.showAddFile = false;
-      //     this.progresBarWidth = 0;
-      //     this.activateProgressBar();
-      //   };
-
-      //   fileReader.readAsDataURL(this.movie.image);
-
-      // } else {
-      //   //! NO VALIDO
-      //   this.$refs.addFile1.classList.remove("add-file-active");
-      //   this.showAddFile = false;
-      //   this.showError = true;
-      // }
     },
     checkFormat(file) {
       console.log("check format");
@@ -245,6 +223,11 @@ export default {
       let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
 
       if (validExtensions.includes(fileType)) {
+        this.validMovieImage = true;
+
+        console.log("this.enableUploadMovieButton");
+        console.log(this.enableUploadMovieButton);
+
         let fileReader = new FileReader();
 
         fileReader.onload = () => {
@@ -325,6 +308,13 @@ export default {
 
       this.movie.category = e.currentTarget.innerText;
 
+      if (typeof this.movie.category === "string") {
+        this.validMovieCategory = true;
+
+        console.log("this.validMovieImage");
+        console.log(this.validMovieImage);
+      }
+
       // actualizar arriba
       const cateoryTitle = this.$refs.cateoryTitle;
       cateoryTitle.innerHTML = e.currentTarget.innerText;
@@ -332,6 +322,16 @@ export default {
       // cierro
       const optionsContainer = this.$refs.optionsContainer;
       optionsContainer.classList.toggle("active");
+    },
+    checkMovieName(e) {
+      if (typeof e.target.value === "string") {
+        this.validMovieName = true;
+        console.log("this.enableUploadMovieButton");
+        console.log(this.enableUploadMovieButton);
+      }
+    },
+    checkMovieCategory(e) {
+      console.log("checkMovieCategory");
     },
   },
 };
@@ -507,6 +507,9 @@ export default {
   -webkit-appearance: none;
   appearance: none;
 }
+.cateory-title {
+  font-weight: bold;
+}
 *:focus {
   outline: none;
 }
@@ -524,6 +527,9 @@ export default {
   font-size: 16px;
   color: white;
   background-color: #dedede;
+}
+.enable {
+  background-color: black;
 }
 // --------------------------------------- SELECT ---------------------------------
 .selectbox {
