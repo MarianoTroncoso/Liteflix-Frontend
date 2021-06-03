@@ -12,8 +12,12 @@
       </div>
     </div>
     <div class="mis-peliculas-wrapper-desktop">
-      <h4>Mis películas</h4>
-      <div class="mis-peliculas-imagenes-desktop">
+      <h4 class="animate__animated animate__fadeInLeftBig animate__delay-1s">
+        Mis películas
+      </h4>
+      <div
+        class="mis-peliculas-imagenes-desktop animate__animated animate__fadeInRightBig animate__delay-2s"
+      >
         <ImagenMisPeliculas
           v-for="(movie, index) in movies"
           :key="index"

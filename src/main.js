@@ -6,11 +6,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuex from 'vuex'
-// import 'animate.css' 
+import 'animate.css' 
 
 import createPersistedState from 'vuex-persistedstate'
-
-
 
 Vue.use(Vuex)
 

@@ -12,8 +12,12 @@
       </div>
     </div>
     <div class="populares-wrapper-desktop">
-      <h4>Populares de Liteflix</h4>
-      <div class="populares-imagenes-desktop">
+      <h4 class="animate__animated animate__fadeInLeftBig animate__delay-1s">
+        Populares de Liteflix
+      </h4>
+      <div
+        class="populares-imagenes-desktop animate__animated animate__fadeInRightBig animate__delay-2s"
+      >
         <ImagenPopulares
           v-for="(image, index) in images"
           :key="index"

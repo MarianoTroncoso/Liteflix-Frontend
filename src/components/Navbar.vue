@@ -1,9 +1,10 @@
 <template>
   <div class="navbar-wrapper">
-    <a id="logo-brand" href="#"
+    <a id="logo-brand" class="animate__animated animate__fadeInDownBig" href="#"
       ><img src="../../static/liteflix.svg" alt=""
     /></a>
-    <ul class="ul-left">
+
+    <ul class="ul-left animate__animated animate__fadeInDownBig">
       <li>
         <a href="#"><b>Inicio</b></a>
       </li>
@@ -12,10 +13,16 @@
       <li><a href="#">Agregados recientemente</a></li>
       <li><a href="#">Mi lista</a></li>
     </ul>
-    <button class="add-movie-button" id="myBtn" @click="openModal">
+
+    <button
+      class="add-movie-button animate__animated animate__fadeInDownBig"
+      id="myBtn"
+      @click="openModal"
+    >
       <img src="../../static/plus.svg" alt="" />
       <span>Agregar película</span>
     </button>
+
     <div id="myModal" ref="myModal" class="modal-container">
       <div class="modal-content">
         <div class="close-container">
@@ -27,7 +34,7 @@
     </div>
 
     <!-- RIGHT ITEMS -->
-    <div class="right-items">
+    <div class="right-items animate__animated animate__fadeInDownBig">
       <ul>
         <li><a href="#">Niños</a></li>
         <li>
@@ -55,6 +62,7 @@
 <script>
 import UserMenu from "./UserMenu";
 import FormMovie from "./FormMovie";
+
 export default {
   name: "Navbar",
   components: {
