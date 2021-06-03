@@ -13,16 +13,10 @@
     </div>
 
     <div class="proximamente-wrapper-desktop">
-      <transition
-        appear
-        @before-enter="beforeEnter"
-        @enter="enter"
-        @after-enter="afterEnter"
-      >
-        <h4 class="animate__animated animate__fadeInLeftBig animate__delay-1s">
-          Próximamente
-        </h4>
-      </transition>
+      <h4 class="animate__animated animate__fadeInLeftBig animate__delay-1s">
+        Próximamente
+      </h4>
+
       <div
         class="proximamente-imagenes-desktop animate__animated animate__fadeInRightBig animate__delay-2s"
       >

@@ -79,10 +79,15 @@ export default {
     axios
       .get("https://liteflix-test-api.herokuapp.com/movies")
       .then((response) => {
-        // console.log(response.data);
-        // console.log(process.env.API_URL_BASE);
         this.movies = response.data.slice(0, 4);
-        // console.log(this.images);
+        if (response.data.length > 4) {
+          this.movies = response.data.slice(
+            response.data.length - 4,
+            response.data.length
+          );
+        } else {
+          this.movies = response.data;
+        }
       });
   },
 };
