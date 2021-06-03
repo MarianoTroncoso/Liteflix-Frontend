@@ -69,7 +69,7 @@ export default {
 // }
 
 .content {
-  // border: 2px solid green;
+  // border: 2px solid red;
   position: relative;
   // width: 90%;
   // max-width: 400px;
@@ -78,6 +78,7 @@ export default {
   // nuevo
   width: 100%;
   min-width: 255px;
+  max-width: 400px;
   height: 100%;
   max-height: 200px;
   // min-width: 255px;
