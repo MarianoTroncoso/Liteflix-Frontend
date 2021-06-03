@@ -107,16 +107,13 @@ a {
   padding: 6px 6px 6px 7px;
   border: 0;
   border-radius: 18.5px;
-  // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background-color: white;
   display: flex;
-  // justify-content: center;
   align-items: center;
   position: relative;
 }
 
 .selected-user-image {
-  // border: 2px solid red;
   background-color: #ce00ff;
   width: 25px;
   height: 25px;
@@ -133,7 +130,6 @@ a {
   color: #9b9b9b;
 }
 .not-selected-user-image {
-  // border: 2px solid red;
   background-color: #9b9b9b;
   width: 25px;
   height: 25px;
@@ -149,10 +145,8 @@ a {
   margin-left: 5px;
 }
 .ul-settings {
-  // border: 2px solid blue;
 }
 .ul-settings li {
-  // border: 2px solid blue;
   display: flex !important;
   justify-content: left !important;
   padding: 7px 0 7px 0;
