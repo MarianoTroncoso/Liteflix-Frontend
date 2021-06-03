@@ -3,7 +3,7 @@
     <a id="logo-brand" href="#"
       ><img src="../../static/liteflix.svg" alt=""
     /></a>
-    <ul>
+    <ul class="ul-left">
       <li><a href="#">Inicio</a></li>
       <li><a href="#">Series</a></li>
       <li><a href="#">Peliculas</a></li>
@@ -84,18 +84,24 @@ export default {
 <style lang="scss" scoped>
 .navbar-wrapper {
   // padding: 20px 165px 0 165px;
+  padding: 20px 0 0 0;
   display: flex;
   // border: 2px solid red;
   // width: 1300px;
   width: 80%;
   margin: 0 auto 0 auto;
-  padding: 20px 0 0 0;
+  // padding: 20px 0 0 0;
+  .ul-left {
+    padding: 5px 0 0 0;
+    // border: 2px solid blue;
+  }
 }
 #logo-brand {
   margin-right: 20px;
 }
 ul {
-  padding: 2px 0 0 0;
+  // padding: 2px 0 0 0;
+  padding: 0;
 }
 li {
   display: inline;
@@ -112,7 +118,7 @@ a {
   letter-spacing: normal;
 }
 .add-movie-button:hover span {
-  max-width: 7rem;
+  max-width: 10rem;
   margin: 0 17px 0 0;
 }
 .add-movie-button {
@@ -123,6 +129,7 @@ a {
   align-items: center;
   padding: 0;
   height: 40px;
+
   img {
     margin: 0 12px 0 12px;
   }
@@ -140,11 +147,13 @@ a {
   }
 }
 .right-items {
+  // border: 2px solid black;
   margin-left: auto;
   display: flex;
   flex-wrap: wrap;
   position: relative;
   width: auto;
+  padding: 2px 0 0 0;
   li {
     margin-left: 20px;
     margin-right: 0;
