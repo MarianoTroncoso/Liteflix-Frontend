@@ -13,7 +13,7 @@
     </div>
 
     <div class="proximamente-wrapper-desktop">
-      <h4 class="animate__animated animate__backInLeft">Próximamente</h4>
+      <h4 class="">Próximamente</h4>
       <div class="proximamente-imagenes-desktop">
         <ImagenProximamente
           v-for="(image, index) in images"

@@ -95,6 +95,7 @@ export default {
   // padding: 20px 0 0 0;
   .ul-left {
     padding: 5px 0 0 0;
+    // text-shadow: 0.5px 0.5px 0.5px black;
     // border: 2px solid blue;
   }
 }
@@ -155,7 +156,7 @@ a {
   flex-wrap: wrap;
   position: relative;
   width: auto;
-  padding: 2px 0 0 0;
+  padding: 4px 0 0 0;
   li {
     margin-left: 20px;
     margin-right: 0;
@@ -168,12 +169,14 @@ a {
   }
 }
 .right-items > ul {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
 }
 .bell {
   background-image: url("../../static/bell.svg");
   background-repeat: no-repeat;
-  padding-right: 0;
+  padding: 8px;
+  // border: 2px solid red;
   margin-bottom: 2px;
   span {
     width: 6px;

@@ -11,12 +11,14 @@
         /></a>
       </div>
     </div>
-    <div
-      class="destacada-wrapper-desktop animate__animated animate__backInLeft"
-    >
+    <div class="destacada-wrapper-desktop">
       <!--  bg-secondary -->
       <h4>Original de <b>Liteflix</b></h4>
-      <h1>{{ title }}</h1>
+      <!-- <h1>{{ title }}</h1> -->
+      <transition appear name="fade" @before-enter="beforeEnter" @enter="enter">
+        <h1>{{ title }}</h1>
+      </transition>
+
       <div class="buttons-desktop">
         <DestacadaButton text="Reproducir" icon="../../static/play.svg" />
         <DestacadaButton text="Mi lista" icon="../../static/plus.svg" />
