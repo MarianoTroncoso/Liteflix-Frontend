@@ -4,7 +4,9 @@
       ><img src="../../static/liteflix.svg" alt=""
     /></a>
     <ul class="ul-left">
-      <li><a href="#">Inicio</a></li>
+      <li>
+        <a href="#"><b>Inicio</b></a>
+      </li>
       <li><a href="#">Series</a></li>
       <li><a href="#">Peliculas</a></li>
       <li><a href="#">Agregados recientemente</a></li>
@@ -214,10 +216,10 @@ a {
 }
 // ----------------------------------- modal ---------------------------------------
 .modal-container {
+  // border: 2px solid red;
   display: none;
   position: fixed;
   z-index: 1;
-  // padding-top: 100px;
   padding: 200px 0 0 0;
   left: 0;
   top: 0;

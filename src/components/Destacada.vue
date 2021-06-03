@@ -11,7 +11,9 @@
         /></a>
       </div>
     </div>
-    <div class="destacada-wrapper-desktop">
+    <div
+      class="destacada-wrapper-desktop animate__animated animate__backInLeft"
+    >
       <!--  bg-secondary -->
       <h4>Original de <b>Liteflix</b></h4>
       <h1>{{ title }}</h1>

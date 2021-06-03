@@ -3,7 +3,10 @@
     <div class="content">
       <a href="#" target="">
         <div class="content-overlay"></div>
-        <img class="content-image" :src="image" />
+        <img
+          class="content-image animate__animated animate__bounceInRight"
+          :src="image"
+        />
         <div class="content-details fadeIn-bottom grid-container">
           <div class="row-1">
             <a href="#">

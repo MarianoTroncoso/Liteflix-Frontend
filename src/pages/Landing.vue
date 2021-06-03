@@ -56,8 +56,22 @@ export default {
           0,
           250
         );
-        this.$refs.home.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${orderByDateResults[0].backdrop_path})`;
+
+        this.destacada.posterPath = orderByDateResults[0].poster_path;
+        this.destacada.backdropPath = orderByDateResults[0].backdrop_path;
+
+        this.$refs.home.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${this.destacada.backdropPath})`;
       });
+  },
+  created() {
+    window.addEventListener("resize", this.changeBackgroundImage);
+  },
+  methods: {
+    changeBackgroundImage(e) {
+      if (e.target.innerWidth < 760) {
+        this.$refs.home.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${this.destacada.posterPath})`;
+      }
+    },
   },
 };
 </script>
