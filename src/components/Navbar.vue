@@ -107,6 +107,10 @@ export default {
     // border: 2px solid blue;
   }
 }
+.ul-left {
+  // border: 2px solid blue;
+  padding: 5px 0 0 0;
+}
 #logo-brand {
   margin-right: 20px;
 }
@@ -134,13 +138,13 @@ a {
 }
 .add-movie-button {
   background-color: red;
+  // border: 2px solid green;
   border: 0;
   border-radius: 20px;
   display: flex;
   align-items: center;
   padding: 0;
   height: 40px;
-
   img {
     margin: 0 12px 0 12px;
   }
@@ -161,11 +165,13 @@ a {
   // border: 2px solid black;
   margin-left: auto;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   position: relative;
   width: auto;
   padding: 4px 0 0 0;
   li {
+    // border: 2px solid black;
     margin-left: 20px;
     margin-right: 0;
   }
