@@ -56,46 +56,25 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding: 0;
-  // float: left;
-  // width: 50%;
-  // border: 2px solid green;
+
   margin-right: 23px;
 }
 
-// .container .title {
-//   color: #1a1a1a;
-//   text-align: center;
-//   margin-bottom: 10px;
-// }
-
 .content {
-  // border: 2px solid red;
   position: relative;
-  // width: 90%;
-  // max-width: 400px;
-  //margin: auto;
   overflow: hidden; //! cuidado
-  // nuevo
   width: 100%;
   min-width: 255px;
   max-width: 400px;
   height: 100%;
   max-height: 200px;
-  // min-width: 255px;
-  // height: 155px;
 }
 
 .content .content-overlay {
-  // border: 2px solid blue;
-  // background: rgba(0, 0, 0, 0.7); //! difuminado
   box-shadow: 0 -130px 80px -60px black inset;
   position: absolute;
   height: 100%; //! estaba en 99%
   width: 100%;
-  // left: 0;
-  // top: 0;
-  // bottom: 0;
-  // right: 0;
   opacity: 0;
   -webkit-transition: all 0.4s ease-in-out 0s;
   -moz-transition: all 0.4s ease-in-out 0s;
@@ -108,21 +87,13 @@ export default {
 }
 
 .content-image {
-  // width: 100%;
-  // width: 255px;
   width: 100%;
-  // min-width: 255px;
   height: 100%;
-  // max-height: 255px;
 }
 
 .content-details {
   position: absolute;
-  // text-align: center;
-  // padding-left: 1em;
-  // padding-right: 1em;
   width: 100%;
-  // top: 50%;
   left: 50%;
   opacity: 0;
   -webkit-transform: translate(-50%, -50%);
@@ -134,7 +105,6 @@ export default {
 }
 
 .grid-container {
-  // border: 1px solid green;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto auto;
@@ -176,14 +146,12 @@ export default {
 }
 
 .row-2 {
-  // background-color: blue;
   display: grid;
   grid-template-columns: auto;
   justify-items: center;
   padding: 0 0 0 0;
 }
 .row-3 {
-  // background-color: green;
   color: white;
   padding: 0 0 10px 10px;
 }
@@ -211,28 +179,10 @@ export default {
 
 .content:hover .content-details {
   top: 50%;
-  // left: 50%;
   opacity: 1;
-}
-
-.content-details p {
-  // color: #fff;
-  // font-size: 0.8em;
 }
 
 .fadeIn-bottom {
   top: 80%;
 }
-
-// .fadeIn-top {
-//   top: 20%;
-// }
-
-// .fadeIn-left {
-//   left: 20%;
-// }
-
-// .fadeIn-right {
-//   left: 80%;
-// }
 </style>

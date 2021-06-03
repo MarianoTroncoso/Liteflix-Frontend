@@ -1,6 +1,9 @@
 <template>
   <div class="navbar-wrapper">
-    <a id="logo-brand" href="#"
+    <a
+      id="logo-brand"
+      class="ul-left animate__animated animate__fadeInDownBig"
+      href="#"
       ><img src="../../static/liteflix.svg" alt=""
     /></a>
 
@@ -82,10 +85,6 @@ export default {
       modal.style.display = "none";
       this.showProgressBar = false; // agregado 1
       this.showAddFile = true;
-      // this.progresBarWidth = 0;
-
-      // const progresBar = this.$refs.progressBar;
-      // progresBar.style.setProperty("--width", 0);
     },
   },
 };
@@ -93,29 +92,21 @@ export default {
 
 <style lang="scss" scoped>
 .navbar-wrapper {
-  // padding: 20px 165px 0 165px;
   padding: 20px 0 0 0;
   display: flex;
-  // border: 2px solid red;
-  // width: 1300px;
   width: 80%;
   margin: 0 auto 0 auto;
-  // padding: 20px 0 0 0;
   .ul-left {
     padding: 5px 0 0 0;
-    // text-shadow: 0.5px 0.5px 0.5px black;
-    // border: 2px solid blue;
   }
 }
 .ul-left {
-  // border: 2px solid blue;
   padding: 5px 0 0 0;
 }
 #logo-brand {
   margin-right: 20px;
 }
 ul {
-  // padding: 2px 0 0 0;
   padding: 0;
 }
 li {
@@ -138,7 +129,6 @@ a {
 }
 .add-movie-button {
   background-color: red;
-  // border: 2px solid green;
   border: 0;
   border-radius: 20px;
   display: flex;
@@ -162,7 +152,6 @@ a {
   }
 }
 .right-items {
-  // border: 2px solid black;
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -171,7 +160,6 @@ a {
   width: auto;
   padding: 4px 0 0 0;
   li {
-    // border: 2px solid black;
     margin-left: 20px;
     margin-right: 0;
   }
@@ -190,7 +178,6 @@ a {
   background-image: url("../../static/bell.svg");
   background-repeat: no-repeat;
   padding: 8px;
-  // border: 2px solid red;
   margin-bottom: 2px;
   span {
     width: 6px;
@@ -204,11 +191,8 @@ a {
 .action {
   margin: 5px 5px 0 0;
   padding: 0;
-  // border: 2px solid red;
-  //position: absolute;
   top: 0;
   right: 0;
-  // background-color: red;
 }
 .action:hover .menu {
   top: 50px;
@@ -233,7 +217,6 @@ a {
 }
 // ----------------------------------- modal ---------------------------------------
 .modal-container {
-  // border: 2px solid red;
   display: none;
   position: fixed;
   z-index: 1;
@@ -249,27 +232,15 @@ a {
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  // padding: 20px 0 0 0;
-  // padding: 20px;
-  // border: 2px solid red;
-  // width: 80%;
+
   width: 730px;
   height: 354px;
-
-  form {
-    // border: 2px solid blue;
-    // padding-top: 10px;
-  }
 }
 .close-container {
-  // border: 2px solid green;
   height: auto;
-  // padding: 10px 14px 0 0;
   padding: 5px 14px 5px 0;
 }
 .close {
-  // border: 2px solid blue;
-  // color: #aaaaaa;
   float: right;
   font-size: 20px;
   font-weight: bold;

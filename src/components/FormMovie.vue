@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- action-->
-    <!-- <form @submit="postMovie" method="POST" enctype="multipart/form-data"> -->
     <form enctype="multipart/form-data" action="" ref="form" class="form">
       <!----------------------------- SUBIR ARCHIVO: showAddFile ----------------------------->
       <div
@@ -108,7 +106,6 @@
         @click="postMovie"
         :v-show="showUploadMovieButton"
       >
-        <!-- :disabled="!this.enableUploadMovieButton" -->
         Subir Película
       </button>
     </form>
@@ -141,13 +138,9 @@ export default {
       showProgressBar: false, // barra cargando sin error
       showError: false,
       progresBarWidth: 0,
-      // enable button
       validMovieName: false,
       validMovieCategory: false,
       validMovieImage: false,
-      // enableUploadMovieButton: validMovieName,
-      // success: false,
-
       // form data
       movie: {
         name: "",
@@ -287,9 +280,6 @@ export default {
 
       const optionsContainer = this.$refs.optionsContainer;
       optionsContainer.classList.toggle("active");
-
-      // const options = this.$refs.options;
-      // options.classList.toggle("active");
     },
     actualizarCategoria(e) {
       e.preventDefault();
@@ -353,54 +343,38 @@ export default {
   margin-right: 7px;
 }
 .add-file-active {
-  // background: red;
   border: 2px solid #0076ff;
 }
 .add-file .progress-bar {
-  // display: none;
   position: relative;
   width: 100%;
   height: 30px;
   background-color: #f3f3f3;
-  // border-radius: 10px;
-  // color: green;
-  // padding: 0 0 0 12px;
-  // border: 2px solid blue;
 }
 .add-file {
   .progress-bar::before {
     content: attr(data-label);
     position: absolute;
-    // left: 0.5em;
-    // top: 0.5em;
-    // bottom: 0.5em;
+
     width: calc(var(--width, 0) * 1%);
     min-width: 2rem;
     max-width: calc(100%); //- 1em
     background-color: #7ed321;
     border-radius: 10px;
     padding: 10px;
-    // border: 2px solid red;
   }
   .progress-bar-error::before {
     content: attr(data-label);
     position: absolute;
-    // left: 0.5em;
-    // top: 0.5em;
-    // bottom: 0.5em;
     width: 82%;
-    // min-width: 2rem;
-    // max-width: calc(100%);
     background-color: red;
     border-radius: 10px;
     padding: 10px;
-    // border: 2px solid red;
     margin-top: 5px;
   }
 }
 .progress-bar-container {
   background-color: #f3f3f3;
-  // border: 2px solid green;
   display: block;
   padding: 0 31px 15px 29px;
 
@@ -418,14 +392,12 @@ export default {
     background-color: #f3f3f3;
   }
   .cancel-button {
-    // background-color: red;
     display: flex;
     justify-content: center;
   }
 }
 .progress-bar-container-error {
   background-color: #f3f3f3;
-  // border: 2px solid green;
   display: block;
   padding: 0 31px 15px 29px;
 
@@ -444,33 +416,21 @@ export default {
     text-transform: uppercase;
   }
   .tryagain-button {
-    // background-color: red;
     display: flex;
     justify-content: center;
-    // margin: 20px;
     padding: 33px 0 0 0;
   }
 }
 .film-name-category {
-  // border: 2px solid red;
   display: grid;
   grid-template-columns: 345px 345px;
   padding: 30px 35px 44px 35px;
 }
 .film-name,
 .film-category {
-  // border: 2px solid blue;
   display: grid;
   grid-template-rows: auto auto;
   padding-right: 30px;
-
-  select:focus {
-    // border: 2px solid blue;
-    // background-color: lightgrey;
-
-    // border-radius: 10px;
-    // color: white;
-  }
 }
 .film-name span,
 .film-category span {
@@ -505,7 +465,6 @@ export default {
   outline: none;
 }
 .upload-film {
-  // border: 2px solid green;
   border-radius: 35px;
   border: 0;
   width: 350px;
@@ -518,16 +477,12 @@ export default {
   font-size: 16px;
   color: white;
   background-color: #dedede;
-  // position: fixed;
 }
 .enable {
   background-color: black;
 }
 // --------------------------------------- SELECT ---------------------------------
 .selectbox {
-  // border: 2px solid green;
-  // padding: 0 15px 0 0;
-
   margin: 0;
   box-sizing: border-box;
   position: relative;
@@ -536,9 +491,7 @@ export default {
   }
   a {
     text-decoration: none;
-    // color: black;
   }
-  // scroll bar
   ::-webkit-scrollbar {
     width: 11px;
   }
@@ -555,40 +508,29 @@ export default {
   }
 }
 .select {
-  // border: 2px solid blue;
   cursor: pointer;
   display: flex;
   align-items: center;
   transition: 0.2s ease all;
-  // position relative
   z-index: 200; //!CAMBIAR
   font-family: "Montserrat";
   font-size: 16px;
 }
-.select.active,
-.select:hover {
-  // border: 2px solid red;
-}
 .options-container {
   background-color: white;
-  // border: 2px solid red;
   padding: 20px 30px 25px 0;
   border-radius: 10px;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
   display: none;
 }
 .options {
-  // border: 2px solid orange;
-  // box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
   background-color: white;
   border-radius: 10px;
   z-index: 100; //!CAMBIAR
-  // display: none;
   width: 300px;
   height: 230px;
   padding: 0px 30px 0 20px;
   overflow-y: scroll;
-  // margin: 10px 0 0 0;
 
   ul {
     list-style-type: none;
@@ -620,8 +562,6 @@ export default {
   display: none;
   background-color: #7ed321;
   height: 354px;
-  // display: grid;
-  // justify-content: left;
   grid-template-rows: auto auto auto;
   padding: 0 0 0 35px;
   margin: -30px 0 0 0;
@@ -629,19 +569,16 @@ export default {
   color: white;
   .row-1 {
     img {
-      // border: 2px solid blue;
       margin-top: 38px;
     }
   }
   .row-2 {
-    // border: 2px solid red;
     padding: 44px 0 0 0;
     font-family: "Montserrat";
     h1 {
       font-size: 32px;
       margin: 0 0 5px 0;
       font-weight: 500;
-      // font-weight: bold;
     }
     h2 {
       font-size: 24px;
@@ -649,7 +586,6 @@ export default {
     }
   }
   .row-3 {
-    // border: 2px solid black;
     padding: 51px 0 25px 0;
   }
   .success-close-button {
