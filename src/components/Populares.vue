@@ -87,9 +87,7 @@ export default {
 }
 .populares-wrapper-desktop {
   display: none;
-  // padding: 40.7px 0 67.7px 165px;
   padding: 40px 0 0 0;
-  // border: 2px solid red;
   width: 80%;
   margin: 0 auto 0 auto;
 }
@@ -104,7 +102,6 @@ export default {
   display: inline-flex;
   padding-top: 9.3px;
   position: relative;
-  // border: 2px solid yellow;
   width: 100%;
   overflow: hidden;
 }

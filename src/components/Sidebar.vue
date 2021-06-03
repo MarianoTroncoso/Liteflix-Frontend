@@ -58,11 +58,9 @@ export default {
   methods: {
     openNav() {
       document.getElementById("mySidebar").style.width = "250px";
-      // document.getElementById("brand-logo").style.display = "none";
     },
     closeNav() {
       document.getElementById("mySidebar").style.width = "0";
-      // document.getElementById("brand-logo").style.display = "block";
     },
   },
 };
@@ -213,7 +211,6 @@ ul li {
   border-radius: 20px;
   font-size: 14px;
   color: white;
-  // font-family: "Montserrat";
 }
 .sidebar-add-button a {
   padding: 0;

@@ -20,16 +20,12 @@ export default {
 
 <style lang="scss" scoped>
 .boton {
-  // background: blue;
   width: 160px;
   height: 40px;
   border-radius: 20px;
-  // opacity: 0.5;
-  // background-color: #000000;
   background-color: rgba(#000000, 0.5);
   display: flex;
   align-items: center;
-  // justify-content: center;
   padding: 10px 39px 11px 12px;
 }
 .boton a {

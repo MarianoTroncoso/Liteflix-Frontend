@@ -66,7 +66,6 @@ export default {
 <style lang="scss" scoped>
 // MOBILE
 .destacada-wrapper-mobile {
-  // background-color: gray;
   text-align: center;
   color: white;
   padding: 178.5px 0 0 0;
@@ -88,13 +87,10 @@ export default {
 }
 .destacada-wrapper-desktop {
   display: none;
-  // width: 33.5625rem;
   width: 80%;
   color: white;
-  // padding: 82px 0 0 164px;
   padding: 90px 0 0 0;
   margin: 0 auto 0 auto;
-  // border: 2px solid red;
 }
 .destacada-wrapper-desktop h4 {
   font-family: "Montserrat";
