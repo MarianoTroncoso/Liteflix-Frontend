@@ -1,8 +1,10 @@
 <template>
   <div class="proximamente-wrapper">
     <div class="proximamente-wrapper-mobile">
-      <h1>Proxímamente</h1>
-      <div class="proximamente-imagenes-mobile">
+      <h1 class="animate__animated animate__fadeInLeftBig">Proxímamente</h1>
+      <div
+        class="proximamente-imagenes-mobile animate__animated animate__fadeInRightBig"
+      >
         <img
           v-for="(image, index) in images"
           :key="index"

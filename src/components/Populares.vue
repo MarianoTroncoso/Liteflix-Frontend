@@ -1,8 +1,12 @@
 <template>
   <div class="populares-wrapper">
     <div class="populares-wrapper-mobile">
-      <h1>Populares de Liteflix</h1>
-      <div class="populares-imagenes-mobile">
+      <h1 class="animate__animated animate__fadeInLeftBig">
+        Populares de Liteflix
+      </h1>
+      <div
+        class="populares-imagenes-mobile animate__animated animate__fadeInRightBig"
+      >
         <img
           v-for="(image, index) in images"
           :key="index"

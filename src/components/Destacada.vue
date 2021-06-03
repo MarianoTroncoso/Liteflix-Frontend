@@ -1,7 +1,9 @@
 <template >
   <!--MOBILE-->
   <div class="destacada-wrapper">
-    <div class="destacada-wrapper-mobile">
+    <div
+      class="destacada-wrapper-mobile animate__animated animate__fadeInLeftBig"
+    >
       <h4>Original de <b>Liteflix</b></h4>
       <h1>{{ title }}</h1>
       <div class="buttons-mobile">

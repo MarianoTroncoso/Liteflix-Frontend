@@ -1,8 +1,10 @@
 <template>
   <div class="mis-peliculas-wrapper">
     <div class="mis-peliculas-wrapper-mobile">
-      <h1>Mis películas</h1>
-      <div class="mis-peliculas-imagenes-mobile">
+      <h1 class="animate__animated animate__fadeInLeftBig">Mis películas</h1>
+      <div
+        class="mis-peliculas-imagenes-mobile animate__animated animate__fadeInRightBig"
+      >
         <img
           v-for="(movie, index) in movies"
           :key="index"

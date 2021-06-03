@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-wrapper">
-    <a id="logo-brand" class="animate__animated animate__fadeInDownBig" href="#"
+    <a id="logo-brand" href="#"
       ><img src="../../static/liteflix.svg" alt=""
     /></a>
 
